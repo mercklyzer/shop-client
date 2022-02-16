@@ -31,11 +31,11 @@ const sliderData = [
 
 const Slider = props => {
     return (
-        <div className="h-[calc(100vh-6rem)]">
+        <div className="hidden md:block min-h-[calc(100vh-6rem)]">
             <Swiper navigation={true} modules={[Navigation]} className="mySwipe border-2  h-full">
                 {
                     sliderData.map(data => <SwiperSlide>
-                        <div className={`grid grid-cols-2 h-full ${data.bgColor}`}>
+                        <div className={`grid md:grid-cols-2 h-full ${data.bgColor}`}>
                             <div className="flex justify-center items-center">
                                 <img 
                                     className="object-fit h-full"
