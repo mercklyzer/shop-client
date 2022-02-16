@@ -31,8 +31,8 @@ const sliderData = [
 
 const Slider = props => {
     return (
-        <div className="hidden md:block min-h-[calc(100vh-6rem)]">
-            <Swiper navigation={true} modules={[Navigation]} className="mySwipe border-2  h-full">
+        <div className="hidden sm:block md:block min-h-[calc(100vh-6rem)]">
+            <Swiper navigation={true} modules={[Navigation]} className="mySwipe bg-rose-200 h-full">
                 {
                     sliderData.map(data => <SwiperSlide>
                         <div className={`grid md:grid-cols-2 h-full ${data.bgColor}`}>
@@ -43,7 +43,7 @@ const Slider = props => {
                                 />
     
                             </div>
-                            <div className="h-full w-full flex flex-col justify-center items-center ">
+                            <div className="hidden h-full w-full md:flex flex-col justify-center items-center ">
                                 <div className="text-7xl font-semibold mb-12">{data.title}</div>
                                 <div className="text-xl mb-6">{data.subtitle}</div>
                                 <div className="text-lg font-medium px-4 py-2 uppercase border-gray-800 border-2">Shop Now</div>
