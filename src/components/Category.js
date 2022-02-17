@@ -2,9 +2,10 @@ import React from "react"
 
 const Category = props => {
     return (
-        <div className={`grid grid-rows-3 gap-5 bg-cover h-64 w-full`} style={{backgroundImage: `url(${props.image}`}}>
-            <div></div>
-            <div>SHOP NOW</div>
+        <div className={`bg-cover h-72 sm:h-96 md:h-[40rem] w-full flex justify-center items-center flex-col relative`} style={{backgroundImage: `url(${props.image}`}}>
+            <div className="absolute inset-0 bg-black opacity-20 z-0"></div>
+            <div className="text-white text-3xl font-bold mb-4 z-10">{props.title}</div>
+            <div className="bg-white text-stone-600 py-1 px-3 z-10">SHOP NOW</div>
         </div>
     )
 }

@@ -20,9 +20,9 @@ const categories = [
 ]
 
 const Categories = props => {
-    return <>
-    {categories.map(({id, img, title}) => <Category key={id} image={img} title={title}/>)}    
-    </>
+    return <div className="grid grid-rows-3 gap-2 sm:grid-rows-1 sm:grid-cols-3 sm:gap-4">
+    {categories.map(({id, img, title}) => <Category key={id} image={img} title={title} />)}    
+    </div>
     
 }
 
