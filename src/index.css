@@ -7,3 +7,9 @@
   padding: 0;
   margin: 0;
 }
+
+@layer components{
+  .overlay  {
+    @apply absolute inset-0 bg-black opacity-20;
+  }
+}
