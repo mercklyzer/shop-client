@@ -24,7 +24,7 @@ function App() {
           <Announcement />
           <Navbar />
           <Routes>
-            <Route path='/shop-client/' exact element={ <Home />}/>
+            <Route path='/shop-client' exact element={ <Home />}/>
             <Route path='/shop-client/signup' exact element={ <Register />}/>
             <Route path='/shop-client/login' exact element={ <Login />}/>
             <Route path='/shop-client/product' exact element={ <Product />}/>
