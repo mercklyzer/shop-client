@@ -24,12 +24,12 @@ function App() {
           <Announcement />
           <Navbar />
           <Routes>
-            <Route path='/' exact element={ <Home />}/>
-            <Route path='/signup' exact element={ <Register />}/>
-            <Route path='/login' exact element={ <Login />}/>
-            <Route path='/product' exact element={ <Product />}/>
-            <Route path='/products' exact element={ <ProductList />}/>
-            <Route path='/cart' exact element={ <Cart />}/>
+            <Route path='/shop-client/' exact element={ <Home />}/>
+            <Route path='/shop-client/signup' exact element={ <Register />}/>
+            <Route path='/shop-client/login' exact element={ <Login />}/>
+            <Route path='/shop-client/product' exact element={ <Product />}/>
+            <Route path='/shop-client/products' exact element={ <ProductList />}/>
+            <Route path='/shop-client/cart' exact element={ <Cart />}/>
           </Routes>
           <Newsletter />
         </ScrollToTop>
