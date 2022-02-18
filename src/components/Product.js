@@ -1,6 +1,9 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 const Product = ({image, id}) => {
+    let navigate = useNavigate()
+
     return (
         <div className={`w-full flex justify-center items-center bg-sky-100 p-4 max-h-64 relative cursor-pointer group`}>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-0 w-1 h-20 p-[20%] rounded-full"></div>
@@ -10,7 +13,7 @@ const Product = ({image, id}) => {
                 <div className="rounded-full bg-white p-2 hover:scale-125 hover:bg-sky-100 duration-100">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 </div>
-                <div className="rounded-full bg-white p-2 mx-3 hover:scale-125 hover:bg-sky-100 duration-100">
+                <div className="rounded-full bg-white p-2 mx-3 hover:scale-125 hover:bg-sky-100 duration-100" onClick={() => navigate('/product')}>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
                 <div className="rounded-full bg-white p-2 hover:scale-125 hover:bg-sky-100 duration-100">

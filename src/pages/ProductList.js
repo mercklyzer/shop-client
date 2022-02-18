@@ -6,7 +6,7 @@ const data = productsData
 
 const ProductList = props => {
     return (
-        <div className="px-2 py-2 sm:px-4 md:px-8">
+        <div className="section">
             <div className="text-left font-bold text-4xl mt-8 mb-8">DRESSES</div>
             <div className="flex flex-col items-start mb-6 md:flex-row md:justify-between md:items-start">
                 <div className="mb-4 flex items-center md:mb-0"> 

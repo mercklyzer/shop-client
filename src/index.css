@@ -12,4 +12,8 @@
   .overlay  {
     @apply absolute inset-0 bg-black opacity-20;
   }
+
+  .section {
+    @apply px-2 py-2 sm:px-4 md:px-8;
+  }
 }

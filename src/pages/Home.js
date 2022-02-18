@@ -10,7 +10,7 @@ const Home = props => {
     return (
         <>
             <Slider />
-            <div className="px-2 py-2 sm:px-4 md:px-8">
+            <div className="section">
                 <Categories />
                 <Products data={data} />
             </div>
