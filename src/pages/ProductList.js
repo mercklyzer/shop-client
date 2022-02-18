@@ -8,9 +8,9 @@ const ProductList = props => {
     return (
         <div className="px-2 py-2 sm:px-4 md:px-8">
             <div className="text-left font-bold text-4xl mt-8 mb-8">DRESSES</div>
-            <div className="flex justify-between items-center mb-6">
-                <div className="flex items-center"> 
-                    <div className="text-lg font-semibold">Filter Products</div>
+            <div className="flex flex-col items-start mb-6 md:flex-row md:justify-between md:items-start">
+                <div className="mb-4 flex items-center md:mb-0"> 
+                    <div className="text-lg font-semibold ">Filter Products</div>
                     <select className="mx-4 px-4 py-1 border border-black">
                         <option value="" disabled selected>Color</option>
                         <option value="">White</option>
