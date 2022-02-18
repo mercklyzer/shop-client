@@ -17,8 +17,8 @@ const Product = props => {
     }
 
     return (
-        <div className="section grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2 md:gap-x-8 md:mt-8">
-            <img className="mb-4" src={'https://i.ibb.co/S6qMxwr/jean.jpg'} />
+        <div className="section grid grid-cols-1 md:grid-rows-1 md:grid-cols-2 md:gap-x-8 md:mt-8">
+            <img className="mb-4 object-contain w-full" src={'https://i.ibb.co/S6qMxwr/jean.jpg'} />
             <div>
                 <div className="text-4xl text-left mb-8 lg:text-5xl">Denim Jumpsuit</div>
                 <div className="text-left mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget tristique tortor pretium ut. Curabitur elit justo, consequat id condimentum ac, volutpat ornare.</div>
