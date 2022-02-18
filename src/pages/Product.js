@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import Color from "../components/Color"
+import Quantity from "../components/Quantity"
 
 const Product = props => {
     const [quantity, setQuantity] = useState(1)
@@ -26,9 +28,9 @@ const Product = props => {
                 <div className="md:flex md:justify-between 2xl:max-w-[50%]">
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light">Color</span>
-                        <div className="w-5 h-5 bg-blue-900 rounded-full ml-4"></div>
-                        <div className="w-5 h-5 bg-gray-800 rounded-full ml-2"></div>
-                        <div className="w-5 h-5 bg-slate-900 rounded-full ml-2"></div>
+                        <Color color="bg-blue-900" className="ml-4"/>
+                        <Color color="bg-gray-800" className="ml-2"/>
+                        <Color color="bg-slate-900" className="ml-2"/>
                     </div>
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light mr-7">Size</span>
@@ -42,11 +44,7 @@ const Product = props => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-start md:flex-row md:items-center md:justify-between 2xl:max-w-[50%]">
-                    <div className="flex justify-center items-center mb-8">
-                        <svg onClick={() => setQuantityHandler('-')} className="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4"></path></svg>
-                        <div className="mx-4 border-2 px-4 py-2 border-emerald-600 rounded-lg">{quantity}</div>
-                        <svg onClick={() => setQuantityHandler('+')} className="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                    </div>
+                    <Quantity className="mb-8"/>
                     <div className="py-2 px-4 mb-8 border-2 border-emerald-600 cursor-pointer hover:bg-emerald-600 hover:text-white duration-200">ADD TO CART</div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ const Navbar = props => {
             <div className="basis-1/2 flex sm:basis-1/3 md:basis-1/3 md:flex justify-end items-center mr-2">
                 <div className="hidden md:block mr-6 cursor-pointer" onClick={() => navigate('/signup')}>REGISTER</div>
                 <div className="hidden md:block mr-6 cursor-pointer" onClick={() => navigate('/login')}>SIGN IN</div>
-                <div className="relative">
+                <div className="relative cursor-pointer" onClick={() => navigate('/cart')}>
                     <div className="h-5 w-5 rounded-full bg-indigo-500 absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-white text-xs justify-center items-center flex">2</div>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 </div>

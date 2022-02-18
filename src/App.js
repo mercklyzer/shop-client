@@ -14,6 +14,7 @@ import ProductList from './pages/ProductList';
 import Product from './pages/Product';
 import ScrollToTop from './components/ScrollToTop';
 import Login from './pages/Login';
+import Cart from './pages/Cart';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path='/login' exact element={ <Login />}/>
             <Route path='/product' exact element={ <Product />}/>
             <Route path='/products' exact element={ <ProductList />}/>
+            <Route path='/cart' exact element={ <Cart />}/>
           </Routes>
           <Newsletter />
         </ScrollToTop>
