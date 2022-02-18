@@ -9,14 +9,11 @@ import Slider from "../components/Slider"
 const Home = props => {
     return (
         <>
-            <Announcement />
-            <Navbar />
             <Slider />
             <div className="px-2 py-2 sm:px-4 md:px-8">
                 <Categories />
                 <Products />
             </div>
-            <Newsletter />
         </>
     )
 }

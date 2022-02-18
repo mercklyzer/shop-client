@@ -8,7 +8,7 @@ const Newsletter = props => {
             <div className="flex">
                 <input className="px-4 py-1 border border-gray-300 w-48 sm:w-64 md:w-98" placeholder="Your email"/>
                 <div className="flex justify-center items-center bg-emerald-700 px-4 py-1 md:px-8 md:py-2">
-                    <svg class=" w-4 h-4 md:w-6 md:h-6 text-white rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    <svg className=" w-4 h-4 md:w-6 md:h-6 text-white rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                 </div>
             </div>
         </div>
