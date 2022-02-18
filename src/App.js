@@ -10,18 +10,23 @@ import Register from './pages/Register';
 import Announcement from './components/Announcement';
 import Navbar from './components/Navbar';
 import Newsletter from './components/Newsletter';
+import ProductList from './pages/ProductList';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Announcement />
-        <Navbar />
-        <Routes>
-          <Route path='/signup' exact element={ <Register />}/>
-          <Route path='/' exact element={ <Home />}/>
-        </Routes>
-        <Newsletter />
+        <ScrollToTop>
+          <Announcement />
+          <Navbar />
+          <Routes>
+            <Route path='/' exact element={ <Home />}/>
+            <Route path='/signup' exact element={ <Register />}/>
+            <Route path='/products' exact element={ <ProductList />}/>
+          </Routes>
+          <Newsletter />
+        </ScrollToTop>
       </Router>
       
     </div>
