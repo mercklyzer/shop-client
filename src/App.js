@@ -15,6 +15,7 @@ import Product from './pages/Product';
 import ScrollToTop from './components/ScrollToTop';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import Pay from './components/Pay';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/shop-client/product' exact element={ <Product />}/>
             <Route path='/shop-client/products' exact element={ <ProductList />}/>
             <Route path='/shop-client/cart' exact element={ <Cart />}/>
+            <Route path='/shop-client/pay' exact element={ <Pay />}/>
           </Routes>
           <Newsletter />
         </ScrollToTop>

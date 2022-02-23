@@ -5,7 +5,7 @@ const Product = ({image, id}) => {
     let navigate = useNavigate()
 
     return (
-        <div className={`w-full flex justify-center items-center bg-sky-100 p-4 max-h-64 relative cursor-pointer group`}>
+        <div className={`w-full flex justify-center items-center bg-sky-100 p-4 max-h-64 relative cursor-pointer group overflow-hidden`}>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-0 w-1 h-20 p-[20%] rounded-full"></div>
             <img className="object-contain w-full h-full z-10" src={image}/>
             <div className="overlay opacity-0 group-hover:opacity-20 z-20 duration-150"></div>
