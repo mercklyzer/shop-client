@@ -28,7 +28,7 @@ const Product = props => {
 
     return (
         !isLoading? <div className="section grid grid-cols-1 md:grid-rows-1 md:grid-cols-2 md:gap-x-8 md:mt-8">
-            <img className="mb-4 object-contain w-full" src={'https://i.ibb.co/S6qMxwr/jean.jpg'} />
+            <img className="mb-4 object-contain w-full" src={product.img} />
             <div>
                 <div className="text-4xl text-left mb-8 lg:text-5xl">{product.title}</div>
                 <div className="text-left mb-4">{product.desc}</div>
