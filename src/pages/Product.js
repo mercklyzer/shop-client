@@ -65,9 +65,7 @@ const Product = props => {
                 <div className="md:flex md:justify-between 2xl:max-w-[50%]">
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light">Color</span>
-                        <Color color="bg-blue-900" className="ml-4"/>
-                        <Color color="bg-gray-800" className="ml-2"/>
-                        <Color color="bg-slate-900" className="ml-2"/>
+                        {product.color.map((color, i) => i === 0? <Color color={color} className="ml-4"/> : <Color color={color} className="ml-2"/>)}
                     </div>
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light mr-7">Size</span>
