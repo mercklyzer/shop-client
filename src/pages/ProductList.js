@@ -9,8 +9,8 @@ const ProductList = props => {
     const location = useLocation()
     const category = location.pathname.split("/")[3]
     const [filters, setFilters] = useState({
-        color: 'white',
-        size: 'xs'
+        color: 'White',
+        size: 'XS'
     })
     const [sort, setSort] = useState('newest')
 
@@ -29,26 +29,26 @@ const ProductList = props => {
 
     return (
         <div className="section">
-            <div className="text-left font-bold text-4xl mt-8 mb-8">DRESSES</div>
+            <div className="text-left font-bold text-4xl mt-8 mb-8">{category}</div>
             <div className="flex flex-col items-start mb-6 md:flex-row md:justify-between md:items-start">
                 <div className="mb-4 flex items-center md:mb-0"> 
                     <div className="text-lg font-semibold ">Filter Products</div>
                     <select name="color" className="mx-4 px-4 py-1 border border-black" onChange={handleFilters}>
                         <option value="" disabled>Color</option>
-                        <option value="white">White</option>
-                        <option value="black">Black</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="green">Green</option>
+                        <option value="White">White</option>
+                        <option value="Black">Black</option>
+                        <option value="Red">Red</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Green">Green</option>
                     </select>
                     <select name="size" className="px-4 py-1 border border-black" onChange={handleFilters}>
                         <option value="" disabled>Size</option>
-                        <option value="xs">XS</option>
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                        <option value="xl">XL</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
                     </select>
                 </div>
                 <div className="flex items-center">
