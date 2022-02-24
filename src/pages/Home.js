@@ -12,7 +12,7 @@ const Home = props => {
             <Slider />
             <div className="section">
                 <Categories />
-                {/* <Products data={data} /> */}
+                <Products data={data} />
             </div>
         </>
     )

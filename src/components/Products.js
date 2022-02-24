@@ -40,16 +40,18 @@ const Products = ({category, filters, order}) => {
         }
     }, [products, category, filters, isLoading])
 
-    // useEffect(() => {
-    //     cat &&
-    //       setFilteredProducts(
-    //         products.filter((item) =>
-    //           Object.entries(filters).every(([key, value]) =>
-    //             item[key].includes(value)
-    //           )
-    //         )
-    //       );
-    //   }, [products, cat, filters]);
+    useEffect(() => {
+        if(sort === 'newest'){
+            setFilteredProducts((prev) => [...prev].sort((a, b) => a.createdAt - b.createdAt))
+        }
+        else if(sort === 'asc'){
+            setFilteredProducts((prev) => [...prev].sort((a, b) => a.pricec - b.price))
+        }
+        else if(sort === 'asc'){
+            setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price))
+        }
+    }, [order])
+
 
 
     return (
