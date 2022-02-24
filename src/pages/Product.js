@@ -11,6 +11,7 @@ const Product = props => {
     const id = location.pathname.split("/")[3]
     const [isLoading, setIsLoading] = useState(true)
     const [product, setProduct] = useState()
+    const [selectedSize, setSelectedSize] = useState()
     const [quantity, setQuantity] = useState(0)
 
     const setQuantityHandler = (operation) => {
@@ -44,8 +45,14 @@ const Product = props => {
         getProduct()
     }, [id])
 
+    useEffect(() => {
+        if(product){
+            setSelectedSize(product.size[0])
+        }
+    }, [product])
+
     const handleClick = () => {
-        dispatch(addProduct({product, quantity}))
+        dispatch(addProduct({product: {...product, size: selectedSize}, quantity, total:product.price*quantity}))
     }
 
     return (
@@ -64,7 +71,7 @@ const Product = props => {
                     </div>
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light mr-7">Size</span>
-                        <select className="border border-black px-2 py-1">
+                        <select className="border border-black px-2 py-1" onChange={(e) => setSelectedSize(e.target.value)}>
                             {product.size.map((size, i) => i === 0? 
                                 <option key={i} value={size}>{size}</option>
                                 :<option key={i} value={size}>{size}</option>)
@@ -74,7 +81,7 @@ const Product = props => {
                 </div>
                 <div className="flex flex-col justify-center items-start md:flex-row md:items-center md:justify-between 2xl:max-w-[50%]">
                     <Quantity qty={quantity} setQty={setQuantityHandler} className="mb-8"/>
-                    <div className="py-2 px-4 mb-8 border-2 border-emerald-600 cursor-pointer hover:bg-emerald-600 hover:text-white duration-200">ADD TO CART</div>
+                    <div onClick={handleClick} className="py-2 px-4 mb-8 border-2 border-emerald-600 cursor-pointer hover:bg-emerald-600 hover:text-white duration-200">ADD TO CART</div>
                 </div>
             </div>
         </div>
