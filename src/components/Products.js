@@ -41,13 +41,13 @@ const Products = ({category, filters, order}) => {
     }, [products, category, filters, isLoading])
 
     useEffect(() => {
-        if(sort === 'newest'){
+        if(order === 'newest'){
             setFilteredProducts((prev) => [...prev].sort((a, b) => a.createdAt - b.createdAt))
         }
-        else if(sort === 'asc'){
+        else if(order === 'asc'){
             setFilteredProducts((prev) => [...prev].sort((a, b) => a.pricec - b.price))
         }
-        else if(sort === 'asc'){
+        else if(order === 'asc'){
             setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price))
         }
     }, [order])
