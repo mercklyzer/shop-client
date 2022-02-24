@@ -1,6 +1,9 @@
 import React from "react"
+import { useSelector } from "react-redux"
 
 const OrderSummary = props => {
+    const total = useSelector(state => state.cart.total)
+
     return (
         <div className="border-2 p-3 rounded-md">
             <div className="text-3xl text-left font-light mb-8">ORDER SUMMARY</div>
@@ -18,7 +21,7 @@ const OrderSummary = props => {
             </div>
             <div className="flex justify-between items-center mb-2 md:mb-6">
                 <div className="font-semibold text-xl md:text-2xl">Total</div>
-                <div className="font-semibold text-xl md:text-2xl">$80</div>
+                <div className="font-semibold text-xl md:text-2xl">${total}</div>
             </div>
 
             <div className="border-2 py-2 px-4 border-gray-800 lg:mb-52 bg-black text-white cursor-pointer">CHECKOUT NOW</div>
