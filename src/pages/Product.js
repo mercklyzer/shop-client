@@ -17,7 +17,7 @@ const Product = props => {
     const setQuantityHandler = (operation) => {
         setQuantity(qty => {
             let newQty = qty
-            if(operation === '-' && qty > 1){
+            if(operation === '-' && qty > 0){
                 newQty = qty - 1
             }
             else if(operation === '+'){
@@ -81,7 +81,7 @@ const Product = props => {
                 </div>
                 <div className="flex flex-col justify-center items-start md:flex-row md:items-center md:justify-between 2xl:max-w-[50%]">
                     <Quantity qty={quantity} setQty={setQuantityHandler} className="mb-8"/>
-                    <div onClick={handleClick} className="py-2 px-4 mb-8 border-2 border-emerald-600 cursor-pointer hover:bg-emerald-600 hover:text-white duration-200">ADD TO CART</div>
+                    <button onClick={handleClick} disabled={quantity <= 0} className="py-2 px-4 mb-8 border-2 border-emerald-600 cursor-pointer hover:bg-emerald-600 hover:text-white duration-200 disabled:opacity-50 disabled:cursor-auto disabled:transform-none disabled:transition-none disabled:bg-emerald-600 disabled:text-white">ADD TO CART</button>
                 </div>
             </div>
         </div>
