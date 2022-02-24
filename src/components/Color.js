@@ -21,9 +21,7 @@ const colorToStyle = (color) => {
 }
 
 const Color = props => {
-    console.log(props.color + props.selected);
     const borderColor = props.color === 'Black'? 'border-red-500' : 'border-black'
-
 
     return (
         <div onClick={() => props.setSelectedColor(props.color)} className={`w-5 h-5 ${colorToStyle(props.color)} ${props.selected? `border-2 ${borderColor}`: ''} rounded-full ${props.className}`}></div>

@@ -55,7 +55,7 @@ const Product = props => {
 
 
     const handleClick = () => {
-        dispatch(addProduct({product: {...product, size: selectedSize}, quantity, total:product.price*quantity}))
+        dispatch(addProduct({product: {...product, size: selectedSize, color: selectedColor}, quantity, total:product.price*quantity}))
     }
 
     return (
@@ -68,7 +68,7 @@ const Product = props => {
                 <div className="md:flex md:justify-between 2xl:max-w-[50%]">
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light">Color</span>
-                        {product.color.map((color, i) => i === 0? <Color color={color} className={`ml-4 cursor-pointer`} selected={selectedColor === color} setSelectedColor={setSelectedColor}/> : <Color color={color} className={`ml-2 cursor-pointer`} selected={selectedColor === color} setSelectedColor={setSelectedColor}/>)}
+                        {product.color.map((color, i) => i === 0? <Color key={i} color={color} className={`ml-4 cursor-pointer`} selected={selectedColor === color} setSelectedColor={setSelectedColor}/> : <Color key={i} color={color} className={`ml-2 cursor-pointer`} selected={selectedColor === color} setSelectedColor={setSelectedColor}/>)}
                     </div>
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light mr-7">Size</span>
