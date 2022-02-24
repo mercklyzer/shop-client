@@ -1,14 +1,32 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
 import Color from "../components/Color"
 import Quantity from "../components/Quantity"
+import { addProduct } from "../redux/cartRedux"
 
 const Product = props => {
     const location = useLocation()
     const id = location.pathname.split("/")[3]
-    const [product, setProduct] = useState()
     const [isLoading, setIsLoading] = useState(true)
+    const [product, setProduct] = useState()
+    const [quantity, setQuantity] = useState(0)
+
+    const setQuantityHandler = (operation) => {
+        setQuantity(qty => {
+            let newQty = qty
+            if(operation === '-' && qty > 1){
+                newQty = qty - 1
+            }
+            else if(operation === '+'){
+                newQty = qty + 1
+            }
+            return newQty
+        })
+    }
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getProduct = async () => {
@@ -25,6 +43,10 @@ const Product = props => {
 
         getProduct()
     }, [id])
+
+    const handleClick = () => {
+        dispatch(addProduct({product, quantity}))
+    }
 
     return (
         !isLoading? <div className="section grid grid-cols-1 md:grid-rows-1 md:grid-cols-2 md:gap-x-8 md:mt-8">
@@ -51,7 +73,7 @@ const Product = props => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-start md:flex-row md:items-center md:justify-between 2xl:max-w-[50%]">
-                    <Quantity className="mb-8"/>
+                    <Quantity qty={quantity} setQty={setQuantityHandler} className="mb-8"/>
                     <div className="py-2 px-4 mb-8 border-2 border-emerald-600 cursor-pointer hover:bg-emerald-600 hover:text-white duration-200">ADD TO CART</div>
                 </div>
             </div>
