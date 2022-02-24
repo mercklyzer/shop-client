@@ -59,14 +59,10 @@ const Products = ({category, filters, order}) => {
             {
                 !isLoading?
                     (category?
-                        filteredProducts?.map(({id, img}) => <Product key={id} id={id} image={img}/>)
-                        : products?.slice(0, 8).map(({id, img}) => <Product key={id} id={id} image={img} />))
+                        filteredProducts?.map(({_id, img}) => <Product key={_id} id={_id} image={img}/>)
+                        : products?.slice(0, 8).map(({_id, img}) => <Product key={_id} id={_id} image={img} />))
                 : <div>Fetching data...</div>
             }
-
-            {/* <div className="hidden w-full sm:flex md:col-span-2 justify-center items-center bg-sky-100 p-4 max-h-64 relative">
-                <span className="text-gray-700 text-6xl font-extrabold">BE CLASSY!</span>
-            </div> */}
         </div>
     )
 }

@@ -1,30 +1,38 @@
-import React, { useState } from "react"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import Color from "../components/Color"
 import Quantity from "../components/Quantity"
 
 const Product = props => {
-    const [quantity, setQuantity] = useState(1)
+    const location = useLocation()
+    const id = location.pathname.split("/")[3]
+    const [product, setProduct] = useState()
+    const [isLoading, setIsLoading] = useState(true)
 
-    const setQuantityHandler = (operation) => {
-        setQuantity(qty => {
-            let newQty = qty
-            if(operation === '-' && qty > 1){
-                newQty = qty - 1
+    useEffect(() => {
+        const getProduct = async () => {
+            setIsLoading(true)
+            try{
+                const res = await axios.get(`http://localhost:5000/products/find/${id}`)
+                setProduct(res.data)
             }
-            else if(operation === '+'){
-                newQty = qty + 1
+            catch(err){
+                console.log(err);
             }
-            return newQty
-        })
-    }
+            setIsLoading(false)
+        }
+
+        getProduct()
+    }, [id])
 
     return (
-        <div className="section grid grid-cols-1 md:grid-rows-1 md:grid-cols-2 md:gap-x-8 md:mt-8">
+        !isLoading? <div className="section grid grid-cols-1 md:grid-rows-1 md:grid-cols-2 md:gap-x-8 md:mt-8">
             <img className="mb-4 object-contain w-full" src={'https://i.ibb.co/S6qMxwr/jean.jpg'} />
             <div>
-                <div className="text-4xl text-left mb-8 lg:text-5xl">Denim Jumpsuit</div>
-                <div className="text-left mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget tristique tortor pretium ut. Curabitur elit justo, consequat id condimentum ac, volutpat ornare.</div>
-                <div className="text-left text-2xl mb-4 md:text-3xl lg:text-4xl">$ 20</div>
+                <div className="text-4xl text-left mb-8 lg:text-5xl">{product.title}</div>
+                <div className="text-left mb-4">{product.desc}</div>
+                <div className="text-left text-2xl mb-4 md:text-3xl lg:text-4xl">$ {product.price}</div>
                 <div className="md:flex md:justify-between 2xl:max-w-[50%]">
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light">Color</span>
@@ -35,11 +43,10 @@ const Product = props => {
                     <div className="flex items-center mb-4">
                         <span className="text-xl font-light mr-7">Size</span>
                         <select className="border border-black px-2 py-1">
-                            <option value="" selected>XS</option>
-                            <option value="">S</option>
-                            <option value="">M</option>
-                            <option value="">L</option>
-                            <option value="">XL</option>
+                            {product.size.map((size, i) => i === 0? 
+                                <option key={i} value={size}>{size}</option>
+                                :<option key={i} value={size}>{size}</option>)
+                            }
                         </select>
                     </div>
                 </div>
@@ -49,6 +56,7 @@ const Product = props => {
                 </div>
             </div>
         </div>
+        : <div>Fetching data...</div>
     )
 }
 
