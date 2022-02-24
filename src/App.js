@@ -28,8 +28,8 @@ function App() {
             <Route path='/shop-client' exact element={ <Home />}/>
             <Route path='/shop-client/signup' exact element={ <Register />}/>
             <Route path='/shop-client/login' exact element={ <Login />}/>
-            <Route path='/shop-client/product' exact element={ <Product />}/>
-            <Route path='/shop-client/products' exact element={ <ProductList />}/>
+            <Route path='/shop-client/products/:category' element={ <ProductList />}/>
+            <Route path='/shop-client/product/:id' exact element={ <Product />}/>
             <Route path='/shop-client/cart' exact element={ <Cart />}/>
             <Route path='/shop-client/pay' exact element={ <Pay />}/>
           </Routes>
