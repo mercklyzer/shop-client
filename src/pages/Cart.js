@@ -1,8 +1,11 @@
+import { useSelector } from "react-redux"
 import CartProduct from "../components/CartProduct"
 import OrderSummary from "../components/OrderSummary"
 
 
 const Cart = props => {
+    const cart = useSelector(state => state.cart)
+
     return (
         <div className="section w-full">
             <div className="text-3xl font-light my-4">YOUR BAG</div>
@@ -16,9 +19,12 @@ const Cart = props => {
             </div>
 
             <div className="flex flex-col lg:flex-row">
-                <div className="w-full lg:w-3/4">
-                    <CartProduct />
-                    <CartProduct />
+                <div className="w-full lg:w-3/4">     
+                {
+                    cart.products.map(({_id, title, desc, img, price, quantity, total, color, size}, i) => (
+                        <CartProduct key={i} id={_id} title={title} description={desc} image={img} price={price} quantity={quantity} total={total} color={color} size={size}/>
+                    ))
+                }               
                 </div>
 
                 <div className="lg:w-1/4">
