@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import model from '../assets/model-3.png'
 import { login } from "../redux/apiCalls"
 
@@ -9,7 +9,7 @@ const Login = props => {
     const [password, setPassword] = useState("")
 
     const dispatch = useDispatch()
-
+    const {isFetching, error, errorMessage} = useSelector(state => state.user)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,8 +27,13 @@ const Login = props => {
                         <input className="border border-slate-700 px-4 py-2" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                     <div className="flex">
-                        <button className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white mt-6 cursor-pointer" onClick={handleSubmit}>LOGIN</button>
+                        <button 
+                            className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white mt-6 cursor-pointer disabled:opacity-50 disabled:cursor-auto disabled:transform-none disabled:transition-none disabled:bg-emerald-600 disabled:text-white select-none" 
+                            onClick={handleSubmit}
+                            disabled={isFetching}
+                        >LOGIN</button>
                     </div>
+                    {error && <div className="text-left text-sm text-red-600 mt-4">{errorMessage}</div>}
                     <div className="text-left text-xs underline cursor-pointer mt-4">DO NOT REMEMBER THE PASSWORD?</div>
                     <div className="text-left text-xs underline cursor-pointer mt-2">CREATE A NEW ACCOUNT</div>
                 </form>
