@@ -32,7 +32,7 @@ const sliderData = [
 
 const Hero = props => {
     return (
-        <div className="hidden sm:block h-[calc(100vh-6rem)]">
+        <div className="hidden sm:block h-[calc(80vh-6rem)]">
 
             <div className="h-full w-full flex items-center flex-row justify-center bg-slider-1 bg-cover bg-no-repeat bg-center">
                 <div className="basis-1/2 section lg:p-24">
