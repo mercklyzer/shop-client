@@ -16,6 +16,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import Pay from './components/Pay';
+import Footer from './components/Footer';
 
 function App() {
   const [showOverlay, setShowOverlay] = useState(false)
@@ -37,7 +38,7 @@ function App() {
               <Route path='/shop-client/pay' exact element={ <Pay />}/>
             </Routes>
               <div className={`absolute bg-black opacity-50 top-0 z-10 ${showOverlay? 'h-full w-full': 'h-0 w-0'}`}></div>
-            <Newsletter />
+            <Footer />
           </div>
         </ScrollToTop>
       </Router>
