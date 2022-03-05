@@ -1,34 +1,7 @@
 import React from "react"
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-
-const sliderData = [
-    {
-        image: require('../assets/model-1.png'),
-        title: 'SPRING SALE',
-        subtitle: 'DON\'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.',
-        data: "Slider 1",
-        bgColor: 'bg-rose-200'
-    },
-    {
-        image: 'https://i.ibb.co/DG69bQ4/2.png',
-        title: 'AUTUMN COLLECTION',
-        subtitle: 'DON\'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.',
-        data: "Slider 1",
-        bgColor: 'bg-green-200'
-    },
-    {
-        image: 'https://i.ibb.co/cXFnLLV/3.png',
-        title: 'LOUNGEWEAR LOVE',
-        subtitle: 'DON\'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.',
-        data: "Slider 1",
-        bgColor: 'bg-cyan-200'
-    },
-]
-
 
 const Hero = props => {
     return (

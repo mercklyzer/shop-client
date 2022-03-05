@@ -4,6 +4,7 @@ import Products from "../components/Products"
 import Hero from "../components/Hero"
 import { productsData } from "../data/productsData"
 import LatestArrivals from "../components/LatestArrivals"
+import ShopWithUs from "../components/ShopWithUs"
 
 const data = productsData
 
@@ -14,6 +15,7 @@ const Home = props => {
             <div className="section">
                 <LatestArrivals />
                 <Categories />
+                <ShopWithUs />
                 <Products data={data} />
             </div>
         </>
