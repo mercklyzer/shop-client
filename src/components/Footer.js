@@ -45,7 +45,7 @@ const Footer = props => {
                         Join our mailing list. Get promotions & news.
                     </div>
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                        <input className="py-2 px-2 outline-none w-full mr-4 mb-2 lg:mb-0 text-center" type="email" placeholder="email" />
+                        <input className="py-2 px-2 outline-none w-full mr-4 mb-2 lg:mb-0 text-center lg:text-left" type="email" placeholder="email" />
                         <button className="bg-orange-400 py-2 px-4 font-semibold rounded-sm hover:bg-orange-700 hover:text-white duration-100">Subscribe</button>
                     </div>
                 </div>
