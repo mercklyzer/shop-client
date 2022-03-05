@@ -1,7 +1,7 @@
 import React from "react"
 import Categories from "../components/Categories"
 import Products from "../components/Products"
-import Slider from "../components/Slider"
+import Hero from "../components/Hero"
 import { productsData } from "../data/productsData"
 
 const data = productsData
@@ -9,7 +9,7 @@ const data = productsData
 const Home = props => {
     return (
         <>
-            <Slider />
+            <Hero />
             <div className="section">
                 <Categories />
                 <Products data={data} />
