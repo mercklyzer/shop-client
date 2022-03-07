@@ -6,8 +6,8 @@ const Product = ({image, id}) => {
 
     return (
         <div className={``}>
-            <img className="object-contain" src={image}/>
-            <div className="text-left">
+            <img className="object-contain w-full h-auto" src={image}/>
+            <div className="text-left mt-4">
                 <div className="text-sm font-semibold text-zinc-600">Dresden Sectional Sofa</div>
                 <div className="text-sm font-bold text-zinc-700">$4199</div>
                 <div className="text-sm ">23 Sold</div>

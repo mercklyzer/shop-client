@@ -25,4 +25,60 @@ export const productsData = [
     id:1,
     img: sofa,
   },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
+  {
+    id:1,
+    img: sofa,
+  },
 ]
