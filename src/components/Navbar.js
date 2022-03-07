@@ -15,7 +15,7 @@ const Navbar = props => {
 
 
     return (
-        <nav className="flex h-12 sm:h-16 w-full pt-6 sm:pt-2 section items-center">
+        <nav className="flex h-12 sm:h-16 w-full pt-6 sm:pt-2 section items-center bg-white">
             <div className="hidden basis-1/2 md:flex md:basis-1/3 flex-start items-center">
                 <div className="inline-block mr-4 h-6 w-6 rounded-full overflow-hidden">
                     <img className="w-full h-full object-cover" src={require('../assets/ph.png')} />

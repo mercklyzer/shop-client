@@ -25,8 +25,10 @@ function App() {
     <div className="App">
       <Router>
         <ScrollToTop>
-          <Announcement />
-          <Navbar setShowOverlay={setShowOverlay}/>
+          <div className="sticky top-0 z-50">
+            <Announcement />
+            <Navbar setShowOverlay={setShowOverlay}/>
+          </div>
           <div className="relative">
             <Routes>
               <Route path='/shop-client' exact element={ <Home />}/>
