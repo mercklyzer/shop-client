@@ -46,8 +46,31 @@ const Product = props => {
             </Swiper>
             </div>
 
-            <div className="col-span-5 text-left bg-red-700">
-                Angelo Dining Chair
+            <div className="col-span-5 text-left p-8">
+                <div className="font-semibold text-4xl text-zinc-800">Angelo Dining Chair</div>
+                <div className="text-orange-600 font-semibold text-base mt-2">23 sold</div>
+                <div className="text-right text-3xl text-zinc-800 font-semibold mt-16">$299</div>
+
+                <div>
+                    <label className="block mb-4 font-semibold text-zinc-600 ">Quantity</label>
+
+                    <div className="flex h-10">
+                        <button className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                            <span className="m-auto text-2xl font-thin">-</span>
+                        </button>
+                        <input 
+                            className="font-medium outline-none border appearance-none px-4 py-2 flex justify-center items-center text-center w-24 hover:font-bold"
+                            type="number" min={1}
+                        />
+                        <button className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                            <span className="m-auto text-2xl font-thin">+</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div className="mt-4 text-left text-zinc-500 font-regular">
+                    The timeless silhouette of the Angelo Dining Chair exudes luxury within the home. Sleek black powder coated legs wrap around a full and accommodating seat and backrest filled with premium high density cushioning. Angelo's chic ambiance encourages a leisurely and indulgent dining experience, adding to your home's overall aesthetic. Bring Italian inspired design home with this modern piece available in your choice of premium upholstery.
+                </div>
             </div>
         </div>
     )
