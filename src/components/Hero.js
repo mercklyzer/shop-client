@@ -16,7 +16,7 @@ const Hero = props => {
                         </div>
                         <div className="text-xl md:text-2xl text-white">A haven for new beginnings.</div>
                         <div className="text-xl md:text-2xl text-white mb-24 text-left">Shop our new 2022 collection and get up to 50% off! This is a limited offer.</div>
-                        <button className="bg-white px-2 py-1 md:px-4 md:py-2 text-md md:text-xl text-zinc-800 hover:text-white hover:bg-git-700 drop-shadow-xl rounded-sm duration-100">Shop Now</button>
+                        <button className="bg-white px-2 py-1 md:px-4 md:py-2 text-md md:text-xl text-zinc-800 hover:bg-zinc-800 hover:text-white hover:bg-git-700 drop-shadow-xl rounded-sm duration-100">Shop Now</button>
                     </div>
                 </div>
                 <div className="basis-1/2"></div>
