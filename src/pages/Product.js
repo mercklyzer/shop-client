@@ -79,7 +79,7 @@ const Product = props => {
                     </div>
                 </div>
 
-                <button className="mt-16 border border-zinc-900 w-full py-2 text-center">
+                <button className="mt-16 border border-zinc-900 w-full py-2 text-center hover:bg-zinc-900 hover:text-white duration-100">
                     ADD TO CART
                 </button>
 
