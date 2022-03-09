@@ -29,7 +29,7 @@ const cartSlice = createSlice({
             let i = state.products.findIndex(prod => prod.id === id)
             if(i >= 0){
                 state.quantity -= state.products[i].quantity
-                state.total -= state.products[i].total
+                state.total -= state.products[i].price
                 state.products.splice(i, 1)
             }
 

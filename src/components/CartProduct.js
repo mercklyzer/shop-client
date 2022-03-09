@@ -11,7 +11,11 @@ const CartProduct = props => {
     const setQuantityHandler = (operation) => {
         setQuantity(qty => {
             let newQty = qty
-            if(operation === '-' && qty > 0){
+            if(operation === '-' && qty === 1){
+                newQty = qty - 1
+                dispatch(deleteProduct({id: props.id}))
+            }
+            else if(operation === '-' && qty > 1){
                 newQty = qty - 1
                 dispatch(decreaseQuantity({id: props.id}))
             }
@@ -22,13 +26,7 @@ const CartProduct = props => {
             return newQty
         })
     }
-
-    useEffect(() => {
-        if(quantity === 0){
-            dispatch(deleteProduct({id: props.id}))
-        }
-    }, [quantity])
-
+    
     return (
         <div className={`flex flex-col border-b md:flex-row md:justify-between ${props.className} py-8 lg:py-0`}>
             <div className="flex">
