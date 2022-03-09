@@ -23,6 +23,18 @@ const cartSlice = createSlice({
             state.total += product.total
         },
 
+        replaceProduct: (state, action) => {
+            let product = {id: action.payload.id, quantity: action.payload.quantity, total: action.payload.total}
+
+            let i = state.products.findIndex(prod => prod._id === product._id)
+            if(i >= 0){
+                state.quantity -= state.products[i].quantity + product.quantity
+                state.total -= state.products[i].total + product.total
+                state.products[i].quantity = product.quantity
+                state.products[i].total = product.total
+            }
+        },
+
         deleteProduct: (state, action) => {
             let id = action.payload.id
 
@@ -59,5 +71,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addProduct, deleteProduct, increaseQuantity, decreaseQuantity} = cartSlice.actions
+export const {addProduct, deleteProduct, increaseQuantity, decreaseQuantity, replaceProduct} = cartSlice.actions
 export default cartSlice.reducer

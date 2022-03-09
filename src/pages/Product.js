@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
 import Color from "../components/Color"
 import Quantity from "../components/Quantity"
-import { addProduct } from "../redux/cartRedux"
+import { addProduct, replaceProduct } from "../redux/cartRedux"
 
 import product1 from '../assets/product_1.jpg'
 import product2 from '../assets/product_2.jpg'
@@ -98,7 +98,7 @@ const Product = props => {
                         </button>
                         <input 
                             className="font-medium outline-none border appearance-none px-4 py-2 flex justify-center items-center text-center w-24 hover:font-bold"
-                            type="number" min={1} value={quantity}
+                            type="number" value={quantity}
                         />
                         <button 
                             onClick={() => handleQuantity('+')}

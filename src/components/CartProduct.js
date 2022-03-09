@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { deleteProduct, increaseQuantity, decreaseQuantity } from "../redux/cartRedux"
+import { deleteProduct, increaseQuantity, decreaseQuantity, replaceProduct } from "../redux/cartRedux"
 import Color from "./Color"
 import Quantity from "./Quantity"
 
 const CartProduct = props => {
-    const [quantity, setQuantity] = useState(props.quantity)
     const dispatch = useDispatch()
 
     const setQuantityHandler = (operation) => {
-        setQuantity(qty => {
-            let newQty = qty
-            if(operation === '-' && qty === 1){
-                newQty = qty - 1
-                dispatch(deleteProduct({id: props.id}))
-            }
-            else if(operation === '-' && qty > 1){
-                newQty = qty - 1
-                dispatch(decreaseQuantity({id: props.id}))
-            }
-            else if(operation === '+'){
-                newQty = qty + 1
-                dispatch(increaseQuantity({id: props.id}))
-            }
-            return newQty
-        })
+        if(operation === '-' && props.quantity === 1){
+            dispatch(deleteProduct({id: props.id}))
+        }
+        else if(operation === '-' && props.quantity > 1){
+            dispatch(decreaseQuantity({id: props.id}))
+        }
+        else if(operation === '+'){
+            dispatch(increaseQuantity({id: props.id}))
+        }
     }
-    
+
+    const onChangeQuantity = (qty) => {
+        console.log(qty);
+        console.log("change");
+        if(qty === 0){
+            // setQuantity(1)
+            replaceProduct({id: props.id, quantity: 1, total: props.price})
+        }
+        else if(qty > 0){
+            // setQuantity(qty)
+            replaceProduct({id: props.id, quantity: qty, total: props.price * qty})
+        }
+    }
+
     return (
         <div className={`flex flex-col border-b md:flex-row md:justify-between ${props.className} py-8 lg:py-0`}>
             <div className="flex">
@@ -38,7 +43,7 @@ const CartProduct = props => {
             <div className="flex flex-col 2xl:flex-row justify-center items-center mt-4 lg:mt-0 lg:mr-8 2xl:mr-12">
                 <div className="2xl:mr-12">
                     <label className="font-semibold block text-zinc-600 mb-2">Quantity</label>
-                    <Quantity qty={quantity} setQty={setQuantityHandler} className=""/>
+                    <Quantity qty={props.quantity} setQty={setQuantityHandler} typeQty={onChangeQuantity} className=""/>
                 </div>
                 <div className="text-2xl mt-4 2xl:mt-0">${props.total}</div>
             </div>
