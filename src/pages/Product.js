@@ -20,8 +20,32 @@ import { Pagination, Navigation } from "swiper";
 
 const Product = props => {
     const location = useLocation()
-    const id = location.pathname.split("/")[3]
+    const dispatch = useDispatch()
 
+    const id = location.pathname.split("/")[3]
+    const [quantity, setQuantity] = useState(1)
+
+    const product = {
+        id:1,
+        title: 'Romie Boy Sofa',
+        category: 'sofa',
+        description: 'The timeless silhouette of the Angelo Dining Chair exudes luxury within the home. Sleek black powder coated legs wrap around a full and accommodating seat and backrest filled with premium high density cushioning. Angelo\'s chic ambiance encourages a leisurely and indulgent dining experience, adding to your home\'s overall aesthetic. Bring Italian inspired design home with this modern piece available in your choice of premium upholstery.',
+        displayImage: product1,
+        price: 400
+    }
+
+    const handleQuantity = (operation) => {
+        if(operation === '-' && quantity > 1){
+            setQuantity(qty => qty - 1)
+        }
+        else if(operation === '+'){
+            setQuantity(qty => qty + 1)
+        }
+    }
+
+    const handleClick = () => {
+        dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
+    }
 
     return (
         <div className="md:section md:grid grid-cols-12 md:gap-6 lg:gap-12 w-full">
@@ -66,20 +90,29 @@ const Product = props => {
                     <label className="block mb-4 font-semibold text-zinc-600 ">Quantity</label>
 
                     <div className="flex h-10 ">
-                        <button className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                        <button 
+                            onClick={() => handleQuantity('-')}
+                            className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                        >
                             <span className="m-auto text-2xl font-thin">-</span>
                         </button>
                         <input 
                             className="font-medium outline-none border appearance-none px-4 py-2 flex justify-center items-center text-center w-24 hover:font-bold"
-                            type="number" min={1}
+                            type="number" min={1} value={quantity}
                         />
-                        <button className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer outline-none">
+                        <button 
+                            onClick={() => handleQuantity('+')}
+                            className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer outline-none"
+                        >
                             <span className="m-auto text-2xl font-thin">+</span>
                         </button>
                     </div>
                 </div>
 
-                <button className="mt-12 md:mt-16 border border-zinc-900 w-full py-2 text-center hover:bg-zinc-900 hover:text-white duration-100">
+                <button 
+                    onClick={handleClick}
+                    className="mt-12 md:mt-16 border border-zinc-900 w-full py-2 text-center hover:bg-zinc-900 hover:text-white duration-100"
+                >
                     ADD TO CART
                 </button>
 
