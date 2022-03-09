@@ -33,9 +33,31 @@ const cartSlice = createSlice({
                 state.products.splice(i, 1)
             }
 
-        }
+        },
+
+        increaseQuantity: (state, action) => {
+            let id = action.payload.id
+
+            let i = state.products.findIndex(prod => prod.id === id)
+            if(i >= 0){
+                state.products[i].quantity += 1
+                state.quantity += 1
+                state.total += state.products[i].price
+            }
+        },
+
+        decreaseQuantity: (state, action) => {
+            let id = action.payload.id
+
+            let i = state.products.findIndex(prod => prod.id === id)
+            if(i >= 0){
+                state.products[i].quantity -= 1
+                state.quantity -= 1
+                state.total -= state.products[i].price
+            }
+        },
     }
 })
 
-export const {addProduct, deleteProduct} = cartSlice.actions
+export const {addProduct, deleteProduct, increaseQuantity, decreaseQuantity} = cartSlice.actions
 export default cartSlice.reducer
