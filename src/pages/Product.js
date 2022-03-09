@@ -24,8 +24,8 @@ const Product = props => {
 
 
     return (
-        <div className="section grid grid-cols-12 gap-12 w-full">
-            <div className="col-span-7">
+        <div className="md:section md:grid grid-cols-12 md:gap-6 lg:gap-12 w-full">
+            <div className="md:col-span-7">
             <Swiper
                 pagination={{
                 type: "fraction",
@@ -46,10 +46,10 @@ const Product = props => {
             </Swiper>
             </div>
 
-            <div className="col-span-5 text-left p-8">
-                <div className="font-semibold text-4xl text-zinc-800">Romie Boy Dining Chair</div>
-                <div className="text-orange-600 font-semibold text-base mt-2">23 sold</div>
-                <div className="text-right text-3xl text-zinc-800 font-semibold mt-16">$299</div>
+            <div className="section-sm md:col-span-5 text-left md:p-8">
+                <div className="font-semibold text-2xl mt-8 md:mt-0 md:text-4xl text-zinc-800">Romie Boy Dining Chair</div>
+                <div className="text-orange-600 font-semibold text-base md:mt-2">23 sold</div>
+                <div className="text-right text-2xl md:text-3xl text-zinc-800 font-semibold mt-4 md:mt-16">$299</div>
 
                 <div className="flex justify-start items-center bg-zinc-100 p-2 mt-4">
                     <img 
@@ -79,11 +79,11 @@ const Product = props => {
                     </div>
                 </div>
 
-                <button className="mt-16 border border-zinc-900 w-full py-2 text-center hover:bg-zinc-900 hover:text-white duration-100">
+                <button className="mt-12 md:mt-16 border border-zinc-900 w-full py-2 text-center hover:bg-zinc-900 hover:text-white duration-100">
                     ADD TO CART
                 </button>
 
-                <div className="mt-16 text-left text-zinc-500 font-regular">
+                <div className="my-16 text-left text-zinc-500 font-regular">
                     The timeless silhouette of the Angelo Dining Chair exudes luxury within the home. Sleek black powder coated legs wrap around a full and accommodating seat and backrest filled with premium high density cushioning. Angelo's chic ambiance encourages a leisurely and indulgent dining experience, adding to your home's overall aesthetic. Bring Italian inspired design home with this modern piece available in your choice of premium upholstery.
                 </div>
             </div>
