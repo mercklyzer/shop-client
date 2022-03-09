@@ -1,10 +1,27 @@
-import React from "react"
+import React, { useState } from "react"
 
 const Quantity = ({qty, setQty, typeQty, className}) => {
+    const [quantity, setQuantity] = useState(qty)
+
+    const handleQuantity = (operation, value=1) => {
+        if(operation === '-'){
+            setQuantity(qty => Number(qty)-1)
+            setQty(operation)
+        }
+        else if(operation === '+'){
+            setQuantity(qty => Number(qty)+1)
+            setQty(operation)
+        }
+        else if(operation === 'type'){
+            setQuantity(Number(value).toString())
+            typeQty(Number(value))
+        }
+    }
+
     return (
         <div className={`flex h-10 ${className}`}>
             <button 
-                onClick={() => setQty('-')}
+                onClick={() => handleQuantity('-')}
                 className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
                 >
                 <span className="m-auto text-2xl font-thin">-</span>
@@ -12,11 +29,11 @@ const Quantity = ({qty, setQty, typeQty, className}) => {
             <input 
                 className="font-medium outline-none border appearance-none px-4 py-2 flex justify-center items-center text-center w-24 hover:font-bold"
                 type="number"
-                value={qty}
-                onChange={(e) => typeQty(e.target.value)}
+                value={quantity}
+                onChange={(e) => handleQuantity('type', e.target.value)}
             />
             <button 
-                onClick={() => setQty('+')}
+                onClick={() => handleQuantity('+')}
                 className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer outline-none"
                 >
                 <span className="m-auto text-2xl font-thin">+</span>

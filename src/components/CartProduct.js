@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { deleteProduct, increaseQuantity, decreaseQuantity, replaceProduct } from "../redux/cartRedux"
+import { deleteProduct, increaseQuantity, decreaseQuantity, changeQuantity } from "../redux/cartRedux"
 import Color from "./Color"
 import Quantity from "./Quantity"
 
@@ -20,15 +20,13 @@ const CartProduct = props => {
     }
 
     const onChangeQuantity = (qty) => {
-        console.log(qty);
-        console.log("change");
+
         if(qty === 0){
-            // setQuantity(1)
-            replaceProduct({id: props.id, quantity: 1, total: props.price})
+            dispatch(deleteProduct({id: props.id}))
         }
         else if(qty > 0){
-            // setQuantity(qty)
-            replaceProduct({id: props.id, quantity: qty, total: props.price * qty})
+            console.log("replace", qty);
+            dispatch(changeQuantity({id: props.id, quantity: qty, total: props.price * qty}))
         }
     }
 

@@ -23,13 +23,17 @@ const cartSlice = createSlice({
             state.total += product.total
         },
 
-        replaceProduct: (state, action) => {
+        changeQuantity: (state, action) => {
             let product = {id: action.payload.id, quantity: action.payload.quantity, total: action.payload.total}
-
-            let i = state.products.findIndex(prod => prod._id === product._id)
+            console.log(product);
+            let i = state.products.findIndex(prod => prod._id === product.id)
             if(i >= 0){
-                state.quantity -= state.products[i].quantity + product.quantity
-                state.total -= state.products[i].total + product.total
+                state.quantity -= state.products[i].quantity 
+                state.total -= state.products[i].total 
+
+                state.quantity += product.quantity
+                state.total += product.total 
+                
                 state.products[i].quantity = product.quantity
                 state.products[i].total = product.total
             }
@@ -38,10 +42,10 @@ const cartSlice = createSlice({
         deleteProduct: (state, action) => {
             let id = action.payload.id
 
-            let i = state.products.findIndex(prod => prod.id === id)
+            let i = state.products.findIndex(prod => prod._id === id)
             if(i >= 0){
                 state.quantity -= state.products[i].quantity
-                state.total -= state.products[i].price
+                state.total -= state.products[i].total
                 state.products.splice(i, 1)
             }
 
@@ -50,9 +54,10 @@ const cartSlice = createSlice({
         increaseQuantity: (state, action) => {
             let id = action.payload.id
 
-            let i = state.products.findIndex(prod => prod.id === id)
+            let i = state.products.findIndex(prod => prod._id === id)
             if(i >= 0){
                 state.products[i].quantity += 1
+                state.products[i].total += state.products[i].price
                 state.quantity += 1
                 state.total += state.products[i].price
             }
@@ -61,9 +66,10 @@ const cartSlice = createSlice({
         decreaseQuantity: (state, action) => {
             let id = action.payload.id
 
-            let i = state.products.findIndex(prod => prod.id === id)
+            let i = state.products.findIndex(prod => prod._id === id)
             if(i >= 0){
                 state.products[i].quantity -= 1
+                state.products[i].total -= state.products[i].price
                 state.quantity -= 1
                 state.total -= state.products[i].price
             }
@@ -71,5 +77,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addProduct, deleteProduct, increaseQuantity, decreaseQuantity, replaceProduct} = cartSlice.actions
+export const {addProduct, deleteProduct, increaseQuantity, decreaseQuantity, changeQuantity} = cartSlice.actions
 export default cartSlice.reducer
