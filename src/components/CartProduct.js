@@ -22,9 +22,8 @@ const CartProduct = props => {
         <div className={`flex flex-col border-b md:flex-row md:justify-between ${props.className} py-8 lg:py-0`}>
             <div className="flex">
                 <img className="w-1/2 h-auto max-w-[290px] object-contain p-4" src={props.image}/>
-                <div className="flex items-center justify-center ml-2 overflow-hidden md:mr-8">
-                    {/* <div className="text-left mb-2 font-zinc-700 font-semibold text-lg truncate">{props.title}</div> */}
-                    <div className="text-left mb-2 font-zinc-700 font-semibold truncate text-lg">dasdhkasdhkashdkashdkjahsdkashdkjashk</div>
+                <div className="flex flex-col items-center w-full justify-center ml-2 overflow-hidden md:mr-8">
+                    <div className="text-left font-zinc-700 font-semibold text-lg truncate">{props.title}</div>
                 </div>
             </div>
             <div className="flex flex-col 2xl:flex-row justify-center items-center mt-4 lg:mt-0 lg:mr-8 2xl:mr-12">
