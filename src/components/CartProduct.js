@@ -19,22 +19,20 @@ const CartProduct = props => {
     }
 
     return (
-        <div className={`flex flex-col border-b-2 sm:flex-row sm:justify-between ${props.className}`}>
+        <div className={`flex flex-col border-b md:flex-row md:justify-between ${props.className} py-8 lg:py-0`}>
             <div className="flex">
-                <img className="w-1/2 max-w-[290px] object-contain" src={props.image}/>
-                <div className="flex flex-col items-start justify-center ml-2">
-                    <div className="text-left mb-2">Product: {props.title}</div>
-                    <div className="hidden sm:block mb-2">ID: {props.id}</div>
-                    <div className="flex justify-center">
-                        <Color color={props.color}/>
-                        <div className="ml-4">Size: {props.size}</div>
-                    </div>
-                    <div className="text-left mt-2">{props.description}</div>
+                <img className="w-1/2 h-auto max-w-[290px] object-contain p-4" src={props.image}/>
+                <div className="flex items-center justify-center ml-2 overflow-hidden md:mr-8">
+                    {/* <div className="text-left mb-2 font-zinc-700 font-semibold text-lg truncate">{props.title}</div> */}
+                    <div className="text-left mb-2 font-zinc-700 font-semibold truncate text-lg">dasdhkasdhkashdkashdkjahsdkashdkjashk</div>
                 </div>
             </div>
-            <div className="flex items-center justify-around mb-4 sm:flex-col sm:justify-center sm:items-center sm:mr-8">
-                <Quantity qty={quantity} setQty={setQuantityHandler}/>
-                <div className="text-2xl sm:mt-4">${props.total}</div>
+            <div className="flex flex-col 2xl:flex-row justify-center items-center mt-4 lg:mt-0 lg:mr-8 2xl:mr-12">
+                <div className="2xl:mr-12">
+                    <label className="font-semibold block text-zinc-600 mb-2">Quantity</label>
+                    <Quantity qty={quantity} setQty={setQuantityHandler} className=""/>
+                </div>
+                <div className="text-2xl mt-4 2xl:mt-0">${props.total}</div>
             </div>
         </div>
     )

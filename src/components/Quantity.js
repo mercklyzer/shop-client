@@ -1,11 +1,24 @@
 import React from "react"
 
-const Quantity = props => {
+const Quantity = ({quantity, handleQuantity, className}) => {
     return (
-        <div className={`flex justify-center items-center ${props.className}`}>
-            <svg onClick={() => props.setQty('-')} className="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4"></path></svg>
-            <div className="mx-1 border-2 px-4 py-2 border-emerald-600 rounded-lg select-none">{props.qty}</div>
-            <svg onClick={() => props.setQty('+')} className="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+        <div className={`flex h-10 ${className}`}>
+            <button 
+                onClick={() => handleQuantity('-')}
+                className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                >
+                <span className="m-auto text-2xl font-thin">-</span>
+            </button>
+            <input 
+                className="font-medium outline-none border appearance-none px-4 py-2 flex justify-center items-center text-center w-24 hover:font-bold"
+                type="number" min={1} value={quantity}
+                />
+            <button 
+                onClick={() => handleQuantity('+')}
+                className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer outline-none"
+                >
+                <span className="m-auto text-2xl font-thin">+</span>
+            </button>
         </div>
     )
 }
