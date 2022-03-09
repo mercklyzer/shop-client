@@ -1,9 +1,12 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { deleteProduct } from "../redux/cartRedux"
 import Color from "./Color"
 import Quantity from "./Quantity"
 
 const CartProduct = props => {
     const [quantity, setQuantity] = useState(props.quantity)
+    const dispatch = useDispatch()
 
     const setQuantityHandler = (operation) => {
         setQuantity(qty => {
@@ -17,6 +20,12 @@ const CartProduct = props => {
             return newQty
         })
     }
+
+    useEffect(() => {
+        if(quantity === 0){
+            dispatch(deleteProduct({id: props.id}))
+        }
+    }, [quantity])
 
     return (
         <div className={`flex flex-col border-b md:flex-row md:justify-between ${props.className} py-8 lg:py-0`}>
