@@ -20,7 +20,6 @@ const CartProduct = props => {
     }
 
     const onChangeQuantity = (qty) => {
-
         if(qty === 0){
             dispatch(deleteProduct({id: props.id}))
         }
