@@ -27,13 +27,6 @@ const OrderSummary = props => {
                 <div className="font-semibold text-xl md:text-2xl">${total}</div>
             </div>
 
-            {/* <div 
-                onClick={() => navigate('/shop-client/pay')}
-                className="border-2 py-2 px-4 border-gray-800 lg:mb-52 bg-black text-white cursor-pointer"
-            >
-                CHECKOUT NOW
-            </div> */}
-
             <StripeCheckout
                 name="LYZ Ideas"
                 description={`Your total is $${total}`}

@@ -4,7 +4,7 @@ const Quantity = ({qty, setQty, typeQty, className}) => {
     const [quantity, setQuantity] = useState(qty)
 
     const handleQuantity = (operation, value=1) => {
-        if(operation === '-'){
+        if(operation === '-' && quantity > 1){
             setQuantity(qty => Number(qty)-1)
             setQty(operation)
         }
@@ -13,8 +13,9 @@ const Quantity = ({qty, setQty, typeQty, className}) => {
             setQty(operation)
         }
         else if(operation === 'type'){
-            setQuantity(Number(value).toString())
-            typeQty(Number(value))
+            value = value <= 0? 1 : value
+            setQuantity(value.toString())
+            typeQty(value)
         }
     }
 
@@ -30,7 +31,7 @@ const Quantity = ({qty, setQty, typeQty, className}) => {
                 className="font-medium outline-none border appearance-none px-4 py-2 flex justify-center items-center text-center w-24 hover:font-bold"
                 type="number"
                 value={quantity}
-                onChange={(e) => handleQuantity('type', e.target.value)}
+                onChange={(e) => handleQuantity('type', Number(e.target.value))}
             />
             <button 
                 onClick={() => handleQuantity('+')}

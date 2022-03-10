@@ -44,12 +44,7 @@ const Product = props => {
     }
 
     const onChangeQuantity = (qty) => {
-        if(qty > 0){
-            setQuantity(qty)
-        }
-        else{
-            setQuantity(1)
-        }
+        setQuantity(qty)
     }
 
     const handleClick = () => {
