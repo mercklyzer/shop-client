@@ -1,8 +1,11 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import StripeCheckout from "react-stripe-checkout"
+import useStripe from "../hooks/useStripe"
 
 const OrderSummary = props => {
     const total = useSelector(state => state.cart.total)
+    const [key, onToken] = useStripe()
 
     return (
         <div className="border-2 p-3 rounded-md">
@@ -24,7 +27,25 @@ const OrderSummary = props => {
                 <div className="font-semibold text-xl md:text-2xl">${total}</div>
             </div>
 
-            <div className="border-2 py-2 px-4 border-gray-800 lg:mb-52 bg-black text-white cursor-pointer">CHECKOUT NOW</div>
+            {/* <div 
+                onClick={() => navigate('/shop-client/pay')}
+                className="border-2 py-2 px-4 border-gray-800 lg:mb-52 bg-black text-white cursor-pointer"
+            >
+                CHECKOUT NOW
+            </div> */}
+
+            <StripeCheckout
+                name="LYZ Ideas"
+                description={`Your total is $${total}`}
+                billingAddress
+                shippingAddress
+                amount={total * 100}
+                token={onToken}
+                stripeKey={key}
+                disabled={total === 0}
+            >
+                <div className={`border-2 py-2 px-4 border-gray-800 lg:mb-52 bg-black text-white cursor-pointer ${total === 0? 'opacity-60 cursor-not-allowed' : ''}`}>CHECKOUT NOW</div>
+            </StripeCheckout>
         </div>
     )
 }
