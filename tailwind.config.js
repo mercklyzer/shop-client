@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'login-background':"url('../src/assets/model-3.png'), linear-gradient(#a16207, #713f12)",
+        'register-background':"url('../src/assets/model-2.png'), linear-gradient(#eec185, #c27984)",
         'slider-1': "url('/src/assets/bg-1.jpg')",
         'slider-2': "url('/src/assets/table.jpg')",
         'slider-2': "url('/src/assets/chair.jpg')",

@@ -3,7 +3,7 @@ import model from '../assets/model-2.png'
 
 const Register = props => {
     return (
-        <div className="p-2 bg-pink-200 w-[100vw] max-w-[100%] h-[100vh] bg-cover md:bg-contain bg-no-repeat bg-center flex justify-center items-center relative" style={{backgroundImage: `url(${model})`}}>
+        <div className="p-2 bg-register-background w-[100vw] max-w-[100%] h-[100vh] bg-cover md:bg-contain bg-no-repeat bg-right flex justify-center items-center relative">
             <div className="overlay bg-white z-0"></div>
             <div className="w-[45rem] bg-white p-4 z-10 shadow-2xl rounded-md">
                 <h2 className="text-left font-light text-2xl mb-4">CREATE AN ACCOUNT</h2>
