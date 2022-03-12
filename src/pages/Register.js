@@ -21,7 +21,7 @@ const Register = props => {
                         <span className="font-bold ml-1">PRIVACY POLICY</span>
                     </div>
                     <div className="flex">
-                        <div className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white mt-6 cursor-pointer">CREATE</div>
+                        <div className="px-4 py-2 bg-zinc-700 hover:bg-zinc-800 text-white mt-6 cursor-pointer">CREATE</div>
                     </div>
                 </form>
             </div>

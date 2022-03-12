@@ -28,7 +28,7 @@ const Login = props => {
                     </div>
                     <div className="flex">
                         <button 
-                            className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white mt-6 cursor-pointer disabled:opacity-50 disabled:cursor-auto disabled:transform-none disabled:transition-none disabled:bg-emerald-600 disabled:text-white select-none" 
+                            className="px-4 py-2 bg-zinc-700 hover:bg-zinc-800 text-white mt-6 cursor-pointer disabled:opacity-50 disabled:cursor-auto disabled:transform-none disabled:transition-none disabled:bg-emerald-600 disabled:text-white select-none" 
                             onClick={handleSubmit}
                             disabled={isFetching}
                         >LOGIN</button>
