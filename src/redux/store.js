@@ -19,9 +19,20 @@ const persistConfig = {
     storage,
 }
 
-const rootReducer = combineReducers({
-    user: userReducer, cart: cartReducer
+const appReducer = combineReducers({
+    user: userReducer, 
+    cart: cartReducer
 })
+
+const rootReducer = (state, action) => {
+    if(action.type === "USER_LOGOUT"){
+        storage.removeItem('persist:root')
+        return appReducer(undefined, action)
+    }
+
+    return appReducer(state, action)
+}
+
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
