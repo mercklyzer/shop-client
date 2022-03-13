@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import model from '../assets/model-3.png'
 import { login } from "../redux/apiCalls"
 
@@ -9,11 +10,12 @@ const Login = props => {
     const [password, setPassword] = useState("")
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {isFetching, error, errorMessage} = useSelector(state => state.user)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        login(dispatch, {username, password})
+        login(dispatch, navigate, {username, password})
     }
 
     return (
