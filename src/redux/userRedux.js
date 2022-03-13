@@ -20,7 +20,8 @@ const userSlice = createSlice({
             state.isFetching = false
             state.error = true
             state.errorMessage = action.payload.error
-        }
+        },
+
     }
 })
 
