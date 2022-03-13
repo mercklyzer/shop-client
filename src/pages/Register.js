@@ -13,8 +13,8 @@ const Register = props => {
                         <input className="border border-slate-700 px-4 py-2" placeholder="last name" />
                         <input className="border border-slate-700 px-4 py-2" placeholder="username" />
                         <input className="border border-slate-700 px-4 py-2" placeholder="email" />
-                        <input className="border border-slate-700 px-4 py-2" placeholder="password" />
-                        <input className="border border-slate-700 px-4 py-2" placeholder="confirm password" />
+                        <input className="border border-slate-700 px-4 py-2" type="password" placeholder="password" />
+                        <input className="border border-slate-700 px-4 py-2" type="password" placeholder="confirm password" />
                     </div>
                     <div className="text-xs text-gray-700 text-left mt-4">
                         By creating an account, I consent to the processing of my personal data in accordance with the
