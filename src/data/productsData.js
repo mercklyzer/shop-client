@@ -11,9 +11,14 @@ export const productsData = [
     preview: preview
   },
   {
-    id:1,
-    img: sofa,
-    preview: preview
+    id: 2,
+    title: 'Ejy Bed',
+    category: 'beds',
+    desc: 'Everything from the smooth upholstery, plush cushioning, and rounded edges exudes elegance in this modern contemporary bed frame. Fully upholstered with a neat wrap around tuck, Ophelia is a simple luxury piece ready to take home. With a retreat this cozy, don\'t blame us if it\'s harder to get out of bed in the morning',
+    price: 600,
+    displayImg: 'https://firebasestorage.googleapis.com/v0/b/shop-c4574.appspot.com/o/Ejy_Bed_1.jpg?alt=media',
+    previewImg: 'https://firebasestorage.googleapis.com/v0/b/shop-c4574.appspot.com/o/Ejy_Bed_2.jpg?alt=media',
+    otherImgs: ['https://firebasestorage.googleapis.com/v0/b/shop-c4574.appspot.com/o/Ejy_Bed_3.jpg?alt=media']
   },
   {
     id:1,

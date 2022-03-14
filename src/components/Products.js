@@ -5,30 +5,32 @@ import Product from "./Product"
 const Products = ({category, filters, order, data}) => {
     // fetch the data here
 
-    // const [isLoading, setIsLoading] = useState(true)
-    // const [products, setProducts] = useState()
+    const [isLoading, setIsLoading] = useState(true)
+    const [products, setProducts] = useState()
     // const [filteredProducts, setFilteredProducts] = useState()
 
-    // useEffect(() => {
-    //     const getProducts = async () => {
-    //         setIsLoading(true)
-    //         try{
-    //             const res = await axios.get(
-    //                 category? 
-    //                     `http://localhost:5000/products?category=${category}`
-    //                     : "http://localhost:5000/products"
-    //             )
-    //             console.log(res);
-    //             setProducts(res.data)
-    //         }
-    //         catch(err){
-    //             console.log(err);
-    //         }
-    //         setIsLoading(false)            
-    //     }
+    useEffect(() => {
+        const getProducts = async () => {
+            setIsLoading(true)
 
-    //     getProducts()
-    // }, [category])
+            // move this to apiCalls.js
+            try{
+                const res = await axios.get(
+                    category? 
+                        `http://localhost:5000/products?category=${category}`
+                        : "http://localhost:5000/products"
+                )
+                console.log(res);
+                setProducts(res.data)
+            }
+            catch(err){
+                console.log(err);
+            }
+            setIsLoading(false)            
+        }
+
+        getProducts()
+    }, [category])
 
     // useEffect(() => {
     //     if(category && !isLoading){
@@ -44,9 +46,8 @@ const Products = ({category, filters, order, data}) => {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {
-
-                data.map(({id, img, preview}) => <Product key={id} id={id} image={img} preview={preview}/>)
-
+                !isLoading &&
+                products.map(({_id, displayImg, previewImg}) => <Product key={_id} id={_id} displayImg={displayImg} previewImg={previewImg}/>)
             }
         </div>
     )
