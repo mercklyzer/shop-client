@@ -11,7 +11,7 @@ const Login = props => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {isFetching, error, errorMessage} = useSelector(state => state.user)
+    const {isFetchingLogin, errorLogin, errorMessageLogin} = useSelector(state => state.user)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -32,10 +32,10 @@ const Login = props => {
                         <button 
                             className="px-4 py-2 bg-zinc-700 hover:bg-zinc-800 text-white mt-6 cursor-pointer disabled:opacity-50 disabled:cursor-auto disabled:transform-none disabled:transition-none disabled:text-white select-none" 
                             onClick={handleSubmit}
-                            disabled={isFetching}
+                            disabled={isFetchingLogin}
                         >LOGIN</button>
                     </div>
-                    {error && <div className="text-left text-sm text-red-600 mt-4">{errorMessage}</div>}
+                    {errorLogin && <div className="text-left text-sm text-red-600 mt-4">{errorMessageLogin}</div>}
                     <div className="text-left text-xs underline cursor-pointer mt-4">DO NOT REMEMBER THE PASSWORD?</div>
                     <div className="text-left text-xs underline cursor-pointer mt-2">CREATE A NEW ACCOUNT</div>
                 </form>

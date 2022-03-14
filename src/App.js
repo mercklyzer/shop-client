@@ -6,10 +6,9 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Register from './pages/Register';
+import Signup from './pages/Signup';
 import Announcement from './components/Announcement';
 import Navbar from './components/Navbar';
-import Newsletter from './components/Newsletter';
 import ProductList from './pages/ProductList';
 import Product from './pages/Product';
 import ScrollToTop from './components/ScrollToTop';
@@ -32,7 +31,7 @@ function App() {
           <div className="relative">
             <Routes>
               <Route path='/shop-client' exact element={ <Home />}/>
-              <Route path='/shop-client/signup' exact element={ <Register />}/>
+              <Route path='/shop-client/signup' exact element={ <Signup />}/>
               <Route path='/shop-client/login' exact element={ <Login />}/>
               <Route path='/shop-client/products/:category' element={ <ProductList />}/>
               <Route path='/shop-client/product/:id' exact element={ <Product />}/>

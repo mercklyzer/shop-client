@@ -5,7 +5,7 @@ import model from '../assets/model-2.png'
 import useForm from "../hooks/useForm"
 import { signup } from "../redux/apiCalls"
 
-const Register = props => {
+const Signup = props => {
     const [signupForm, setSignupForm, clearSignupForm] = useForm({
         firstName: "",
         lastName: "",
@@ -18,7 +18,7 @@ const Register = props => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {isFetching, error, errorMessage} = useSelector(state => state.user)
+    const {isFetchingSignup, errorSignup, errorMessageSignup} = useSelector(state => state.user)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -49,15 +49,15 @@ const Register = props => {
                         <button 
                             type="submit"
                             className="px-4 py-2 bg-zinc-700 hover:bg-zinc-800 text-white mt-6 cursor-pointer" 
-                            disabled={isFetching}
+                            disabled={isFetchingSignup}
                             onClick={handleSubmit}
                         >CREATE</button>
                     </div>
-                    {error && <div className="text-left text-sm text-red-600 mt-4">{errorMessage}</div>}
+                    {errorSignup && <div className="text-left text-sm text-red-600 mt-4">{errorMessageSignup}</div>}
                 </form>
             </div>
         </div>
     )
 }
 
-export default Register
+export default Signup

@@ -15,7 +15,7 @@ export const login = async (dispatch, navigate, user) => {
         navigate('/shop-client/')
     }
     catch(err){
-        dispatch(loginFailure({error: err.response.data.error}))
+        dispatch(loginFailure({error: err.response?.data?.error}))
     }
 }
 
@@ -31,6 +31,7 @@ export const signup = async (dispatch, navigate, user) => {
         navigate('/shop-client/')
     }
     catch(err){
-        dispatch(signupFailure({error: err.response.data.error}))
+        console.log(err.response);
+        dispatch(signupFailure({error: err.response?.data?.error}))
     }
 }
