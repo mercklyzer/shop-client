@@ -2,12 +2,15 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import model from '../assets/model-3.png'
+import useForm from "../hooks/useForm"
 import { login } from "../redux/apiCalls"
 
 
 const Login = props => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [loginForm, setLoginForm, clearLoginForm] = useForm({
+        username: "",
+        password: ""
+    })
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -15,7 +18,8 @@ const Login = props => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        login(dispatch, navigate, {username, password})
+        login(dispatch, navigate, loginForm)
+        clearLoginForm()
     }
 
     return (
@@ -25,8 +29,8 @@ const Login = props => {
                 <h2 className="text-left font-light text-2xl mb-4">SIGN IN</h2>
                 <form className="w-full">
                     <div className="grid grid-rows-2 grid-cols-1 gap-4">
-                        <input className="border border-slate-700 px-4 py-2" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
-                        <input className="border border-slate-700 px-4 py-2" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+                        <input className="border border-slate-700 px-4 py-2" name="username" value={loginForm.username} type="text" placeholder="username" onChange={(e) => setLoginForm(e)}/>
+                        <input className="border border-slate-700 px-4 py-2" name="password" value={loginForm.password} type="password" placeholder="password" onChange={(e) => setLoginForm(e)}/>
                     </div>
                     <div className="flex">
                         <button 
