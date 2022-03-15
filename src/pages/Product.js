@@ -24,15 +24,30 @@ const Product = props => {
 
     const id = location.pathname.split("/")[3]
     const [quantity, setQuantity] = useState(1)
+    const [isLoading, setIsLoading] = useState(true)
+    const [product, setProduct] = useState()
+    const [slideImages, setSlideImages] = useState([])
 
-    const product = {
-        _id:1,
-        title: 'Romie Boy Sofa',
-        category: 'sofa',
-        description: 'The timeless silhouette of the Angelo Dining Chair exudes luxury within the home. Sleek black powder coated legs wrap around a full and accommodating seat and backrest filled with premium high density cushioning. Angelo\'s chic ambiance encourages a leisurely and indulgent dining experience, adding to your home\'s overall aesthetic. Bring Italian inspired design home with this modern piece available in your choice of premium upholstery.',
-        displayImage: product1,
-        price: 400
-    }
+    useEffect(() => {
+        const getProduct = async () => {
+            setIsLoading(true)
+
+            // move this to apiCalls.js
+            try{
+                const res = await axios.get(`http://localhost:5000/products/find/${id}`)
+                const fetchedProduct = res.data
+                setProduct(fetchedProduct)
+                console.log(fetchedProduct);
+                const images = [fetchedProduct.displayImg, fetchedProduct.previewImg, ...fetchedProduct.otherImgs]
+                setSlideImages(images)
+            }
+            catch(err){
+                console.log(err);
+            }
+            setIsLoading(false)            
+        }
+        getProduct()
+    }, [])
 
     const setQuantityHandler = (operation) => {
         if(operation === '-' && quantity > 1){
@@ -52,7 +67,7 @@ const Product = props => {
     }
 
     return (
-        <div className="md:section md:grid grid-cols-12 md:gap-6 lg:gap-12 w-full">
+        !isLoading && <div className="md:section md:grid grid-cols-12 md:gap-6 lg:gap-12 w-full">
             <div className="md:col-span-7">
             <Swiper
                 pagination={{
@@ -62,22 +77,16 @@ const Product = props => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <img className="h-auto w-full object-cover" src={product1} />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="h-auto w-full object-cover" src={product2} />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="h-auto w-full object-cover" src={product1} />
-                </SwiperSlide>
+                {
+                    slideImages.map((img, i) => <SwiperSlide key={i}><img className="h-auto w-full object-cover" src={img} /></SwiperSlide>)
+                }
             </Swiper>
             </div>
 
             <div className="section-sm md:col-span-5 text-left md:p-8">
-                <div className="font-semibold text-2xl mt-8 md:mt-0 md:text-4xl text-zinc-800">Romie Boy Dining Chair</div>
-                <div className="text-orange-600 font-semibold text-base md:mt-2">23 sold</div>
-                <div className="text-right text-2xl md:text-3xl text-zinc-800 font-semibold mt-4 md:mt-16">$299</div>
+                <div className="font-semibold text-2xl mt-8 md:mt-0 md:text-4xl text-zinc-800">{product.title}</div>
+                <div className="text-orange-600 font-semibold text-base md:mt-2">{product.sold} sold</div>
+                <div className="text-right text-2xl md:text-3xl text-zinc-800 font-semibold mt-4 md:mt-16">${product.price}</div>
 
                 <div className="flex justify-start items-center bg-zinc-100 p-2 mt-4">
                     <img 
@@ -104,7 +113,7 @@ const Product = props => {
                 </button>
 
                 <div className="my-16 text-left text-zinc-500 font-regular">
-                    The timeless silhouette of the Angelo Dining Chair exudes luxury within the home. Sleek black powder coated legs wrap around a full and accommodating seat and backrest filled with premium high density cushioning. Angelo's chic ambiance encourages a leisurely and indulgent dining experience, adding to your home's overall aesthetic. Bring Italian inspired design home with this modern piece available in your choice of premium upholstery.
+                    {product.desc}
                 </div>
             </div>
         </div>
