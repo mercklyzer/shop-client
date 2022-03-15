@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import Products from "../components/Products"
 import { productsData } from "../data/productsData"
 import sofasHeader from '../assets/sofas.jpeg'
+import axios from "axios";
 
 const data = productsData
 
@@ -10,10 +11,38 @@ const ProductList = props => {
     const location = useLocation()
     const category = location.pathname.split("/")[3]
 
+    const capitalize = (s) => s[0].toUpperCase() + s.slice(1)
 
-    const capitalize = (s) => {
-        return s[0].toUpperCase() + s.slice(1)
-    }
+    const [isLoading, setIsLoading] = useState(true)
+    const [products, setProducts] = useState()
+    // const [filteredProducts, setFilteredProducts] = useState()
+
+    useEffect(() => {
+        const getProducts = async () => {
+            setIsLoading(true)
+
+            // move this to apiCalls.js
+            try{
+                const res = await axios.get(
+                    category? 
+                        `http://localhost:5000/products?category=${category}`
+                        : "http://localhost:5000/products"
+                )
+                console.log(res);
+                setProducts(res.data)
+            }
+            catch(err){
+                console.log(err);
+            }
+            setIsLoading(false)            
+        }
+
+        getProducts()
+    }, [category])
+
+
+
+
 
     return (
         <>
@@ -43,7 +72,7 @@ const ProductList = props => {
             </div>
 
             <div className="section py-8">
-                <Products category={category} data={data} />
+                <Products data={products} isLoading={isLoading}/>
             </div>
         </>
     )
