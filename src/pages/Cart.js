@@ -15,8 +15,8 @@ const Cart = props => {
             <div className="flex flex-col lg:flex-row">
                 <div className="w-full lg:w-3/4">     
                 {
-                    cart.products.map(({_id, title, description, category, displayImage, price, quantity, total}, i) => (
-                        <CartProduct key={i} id={_id} title={title} category={category} description={description} image={displayImage} price={price} quantity={quantity} total={total}/>
+                    cart.products.map(({_id, title, desc, displayImg, price, quantity, total}, i) => (
+                        <CartProduct key={i} id={_id} title={title} description={desc} image={displayImg} price={price} quantity={quantity} total={total}/>
                     ))
                 }               
                 </div>
