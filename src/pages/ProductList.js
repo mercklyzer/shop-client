@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Products from "../components/Products"
 import { productsData } from "../data/productsData"
 import sofasHeader from '../assets/sofas.jpeg'
@@ -8,6 +8,7 @@ import axios from "axios";
 const data = productsData
 
 const ProductList = props => {
+    const navigate = useNavigate()
     const location = useLocation()
     const category = location.pathname.split("/")[3]
 
@@ -40,9 +41,9 @@ const ProductList = props => {
         getProducts()
     }, [category])
 
-
-
-
+    const handleChangeCategory = (category) => {
+        navigate(`/shop-client/products/${category}`)
+    }
 
     return (
         <>
@@ -56,12 +57,15 @@ const ProductList = props => {
 
             <div className="bg-zinc-100 mb-8">
                 <div className="section flex justify-between items-center">
-                    <select className={`bg-zinc-100 outline-none pr-12 py-2 focus:bg-zinc-100 font-semibold text-zinc-700`}>
-                        <option className="text-zinc-500 font-semibold" selected={category === 'pillows'}>Pillows</option>
-                        <option className="text-zinc-500 font-semibold" selected={category === 'beds'}>Beds</option>
-                        <option className="text-zinc-500 font-semibold" selected={category === 'sofas'}>Sofas</option>
-                        <option className="text-zinc-500 font-semibold" selected={category === 'chairs'}>Chairs</option>
-                        <option className="text-zinc-500 font-semibold" selected={category === 'tables'}>Tables</option>
+                    <select 
+                        className={`bg-zinc-100 outline-none pr-12 py-2 focus:bg-zinc-100 font-semibold text-zinc-700`}
+                        onChange={(e) => handleChangeCategory(e.target.value)}
+                    >
+                        <option className="text-zinc-500 font-semibold" value="pillows" selected={category === 'pillows'}>Pillows</option>
+                        <option className="text-zinc-500 font-semibold" value="beds" selected={category === 'beds'}>Beds</option>
+                        <option className="text-zinc-500 font-semibold" value="sofas" selected={category === 'sofas'}>Sofas</option>
+                        <option className="text-zinc-500 font-semibold" value="chairs" selected={category === 'chairs'}>Chairs</option>
+                        <option className="text-zinc-500 font-semibold" value="tables" selected={category === 'tables'}>Tables</option>
                     </select>
                     <select className={`bg-zinc-100 outline-none pr-12 py-2 focus:bg-zinc-100 font-semibold text-zinc-700`}>
                         <option className="text-zinc-500 font-semibold">Popular</option>
