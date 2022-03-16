@@ -4,6 +4,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         currentUser: null,
+        token: null,
         isFetchingLogin: false,
         errorLogin: false,
         errorMessageLogin: '',
@@ -16,7 +17,8 @@ const userSlice = createSlice({
             state.isFetchingLogin = true
         },
         loginSuccess: (state, action) => {
-            state.currentUser = action.payload
+            state.currentUser = action.payload.user
+            state.token = action.payload.token
             state.isFetchingLogin = false
         },
         loginFailure: (state, action) => {
@@ -29,7 +31,8 @@ const userSlice = createSlice({
             state.isFetchingSignup = true
         },
         signupSuccess: (state, action) => {
-            state.currentUser = action.payload
+            state.currentUser = action.payload.user
+            state.token = action.payload.token
             state.isFetchingSignup = false
         },
         signupFailure: (state, action) => {

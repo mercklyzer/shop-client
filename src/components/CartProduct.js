@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { deleteProduct, increaseQuantity, decreaseQuantity, changeQuantity } from "../redux/cartRedux"
-import Color from "./Color"
 import Quantity from "./Quantity"
 
 // dispatch(deleteProduct({id: props.id}))

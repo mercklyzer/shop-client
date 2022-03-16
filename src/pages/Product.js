@@ -2,9 +2,8 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
-import Color from "../components/Color"
 import Quantity from "../components/Quantity"
-import { addProduct, replaceProduct } from "../redux/cartRedux"
+import { addProduct } from "../redux/cartRedux"
 
 import product1 from '../assets/product_1.jpg'
 import product2 from '../assets/product_2.jpg'

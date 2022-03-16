@@ -11,7 +11,7 @@ export const login = async (dispatch, navigate, user) => {
             `${baseUrl}/users/login`,
             user
         )
-        dispatch(loginSuccess(res.data.user))
+        dispatch(loginSuccess(res.data))
         navigate('/shop-client/')
     }
     catch(err){
@@ -27,7 +27,7 @@ export const signup = async (dispatch, navigate, user) => {
             `${baseUrl}/users/register`,
             user
         )
-        dispatch(signupSuccess(res.data.user))
+        dispatch(signupSuccess(res.data))
         navigate('/shop-client/')
     }
     catch(err){

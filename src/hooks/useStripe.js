@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 // get this key from API
 const KEY = "pk_test_51H6jd9JIK2H5ZSdWPYvOnwDZOAWhCMSlbKPBgHLbaY1u3ngE3xSGYNqdyuJQmrGLN0K9jJoVxZcljr7GvfbtkGCT00InJsbfUM"
 
 const useStripe = () => {
     const [stripeToken, setStripeToken] = useState(null)
+    const userToken = useSelector(state => state.user.token)
+    const products = useSelector(state => state.cart.products)
+
     
     const onToken = (token) => {
         setStripeToken(token)
@@ -14,18 +18,22 @@ const useStripe = () => {
     useEffect(() => {
         const makeRequest = async () => {
             try{
+                console.log(userToken);
                 const res = await axios.post(
-                    "http://localhost:5000/checkout/payment",
+                    "http://localhost:5000/orders",
                     {
                         tokenId: stripeToken.id,
-                        amount: 2000,
+                        products: products.map(product => ({productId: product._id, quantity: product.quantity})),
+                    },{
+                        headers: {
+                            Authorization: userToken
+                        }
                     }
                 )
                 console.log(res.data);
-
             }
             catch(err){
-                console.log(err);
+                console.log(err.response);
             }
         }
 
