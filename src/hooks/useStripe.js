@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // get this key from API
 const KEY = "pk_test_51H6jd9JIK2H5ZSdWPYvOnwDZOAWhCMSlbKPBgHLbaY1u3ngE3xSGYNqdyuJQmrGLN0K9jJoVxZcljr7GvfbtkGCT00InJsbfUM"
 
-const useStripe = () => {
+const useStripe = (onSuccess) => {
+    const navigate = useNavigate()
+
     const [stripeToken, setStripeToken] = useState(null)
     const userToken = useSelector(state => state.user.token)
     const products = useSelector(state => state.cart.products)
@@ -31,6 +34,8 @@ const useStripe = () => {
                     }
                 )
                 console.log(res.data);
+                onSuccess()
+
             }
             catch(err){
                 console.log(err.response);

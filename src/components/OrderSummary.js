@@ -1,11 +1,21 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import StripeCheckout from "react-stripe-checkout"
 import useStripe from "../hooks/useStripe"
+import { resetCart } from "../redux/cartRedux"
 
 const OrderSummary = props => {
     const total = useSelector(state => state.cart.total)
-    const [key, onToken] = useStripe()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const onSuccess = () => {
+        dispatch(resetCart())
+        navigate('/shop-client/orders')
+    }
+
+    const [key, onToken] = useStripe(onSuccess)
 
     return (
         <div className="border-2 p-3 rounded-md">
