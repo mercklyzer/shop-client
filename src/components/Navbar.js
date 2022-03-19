@@ -7,8 +7,12 @@ import { useUser } from "../hooks/useUser"
 const Navbar = props => {
     let navigate = useNavigate()
     const dispatch = useDispatch()
-
     const [user, token, role] = useUser()
+
+    const onLogout = () => {
+        dispatch({type: 'USER_LOGOUT'})
+        navigate('/shop-client/')
+    }
 
     const [showUserDropdown, setShowUserDropdown] = useState(false)
     const handleUserDropdown = () => {
@@ -62,9 +66,9 @@ const Navbar = props => {
                     <div className={`absolute top-full right-0 bg-white ${showUserDropdown? 'px-4 py-2 sm:pt-6': 'p-0'} z-50 md:relative md:flex md: mr-4`}>
                         {!user && <div className={`${showUserDropdown? 'block' : 'hidden'} md:block cursor-pointer md:mr-4`} onClick={() => navigate('/shop-client/signup')}>REGISTER</div>}
                         {!user && <div className={`${showUserDropdown? 'block' : 'hidden'} md:block cursor-pointer`} onClick={() => navigate('/shop-client/login')}>SIGN IN</div>}
-                        {user && <div className={`${showUserDropdown? 'block' : 'hidden'} md:block cursor-pointer`} onClick={() => dispatch({type: 'USER_LOGOUT'})}>LOGOUT</div>}
+                        {user && <div className={`${showUserDropdown? 'block' : 'hidden'} md:block cursor-pointer`} onClick={onLogout}>LOGOUT</div>}
                     </div>
-                    <svg className="w-6 h-6 mr-1 md:hidden" fill="none" onClick={handleUserDropdown} stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <svg className="w-6 h-6 mr-1 md:hidden cursor-pointer" fill="none" onClick={handleUserDropdown} stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </div>
                 <div className="relative">
                     <div className="relative cursor-pointer" onClick={() => navigate('/shop-client/cart')}>
