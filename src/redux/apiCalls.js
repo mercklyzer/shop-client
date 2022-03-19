@@ -35,3 +35,26 @@ export const signup = async (dispatch, navigate, user) => {
         dispatch(signupFailure({error: err.response?.data?.error}))
     }
 }
+
+export const getOrders = async (userId, token, setIsLoading) => {
+    console.log(userId);
+    setIsLoading(true)
+
+    try{
+        const res = await axios.get(
+            `${baseUrl}/orders/find/${userId}`,
+            {
+                headers: {
+                    Authorization: token
+                }
+            }
+        )
+        setIsLoading(false)
+        return res.data
+    }
+    catch(err){
+        console.log(err.response);
+        setIsLoading(false)
+        return err.response
+    }
+}

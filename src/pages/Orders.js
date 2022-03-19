@@ -1,51 +1,40 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import CartProduct from "../components/CartProduct"
-import OrderSummary from "../components/OrderSummary"
+import Order from "../components/Order"
+import OrderProduct from "../components/OrderProduct"
+import { useUser } from "../hooks/useUser"
+import { getOrders } from "../redux/apiCalls"
 
 const Orders = props => {
+    const [user, token, role] = useUser()
+    const [isLoading ,setIsLoading] = useState(false)
+    const [orders, setOrders] = useState([])
+
+    useEffect(async () => {
+        const fetchedOrders = await getOrders(user._id, token, setIsLoading)
+        console.log(fetchedOrders);
+        setOrders(fetchedOrders)
+    }, [])
+
     const cart = useSelector(state => state.cart)
 
     return (
         <div className="section w-full">
             <div className="text-3xl font-light my-4">YOUR ORDERS</div>
 
-            <div className="flex border rounded-lg mb-2 flex-col p-4 md:p-8">
-                <div className="text-left w-full">
-                    <div className="float-right text-emerald-700 px-2 py-1 rounded-lg bg-green-300">Completed</div>
-                    <div className="font-bold text-orange-500">12/12/2022</div>
-                    <div className="font-bold text-lg text-zinc-700">Order ID</div>
-                    <div className="ml-4 text-zinc-600 font-semibold text-sm">Ggh1231sdasd23123zzxcca2231</div>
-                    <div className="font-bold text-lg text-zinc-700">Deliver To</div>
-                    <div className="ml-4 text-zinc-600 font-semibold text-sm">B14 L5 HAMMER ST., KENSINGTON 22, LANCASTER NEW CITY, GEN. TRIAS, CAVITE</div>
-                    <div className="font-bold text-lg text-zinc-700">Total</div>
-                    <div className="ml-4 text-zinc-600 font-semibold text-sm">$6000</div>
-                    <div className="font-bold text-lg text-zinc-700">Items</div>
-                </div>
+            <select className="mb-4 bg-zinc-100 py-1 px-2 rounded-lg">
+                <option>All</option>
+                <option>Completed</option>
+                <option>Pending</option>
+            </select>
 
-                <div className="pt-4 flex flex-col sm:flex-row">
-                    <img
-                        className="w-full h-auto max-w-[290px] object-contain px-4 m-auto sm:m-0" 
-                        src={cart.products[0].displayImg} 
-                    />
-                    <div className="w-full flex flex-col justify-center items-center mt-4 md:flex-row">
-                        <div className="w-1/3 font-bold text-xl text-zinc-700">Ejy Bed</div>
-                        <div className="w-1/3 font-semibold text-lg text-zinc-700">3 pcs</div>
-                        <div className="w-1/3 font-semibold text-lg text-zinc-700">$6000</div>
-                    </div>
-                </div>
-                <div className="pt-4 flex flex-col sm:flex-row">
-                    <img
-                        className="w-full h-auto max-w-[290px] object-contain px-4 m-auto sm:m-0" 
-                        src={cart.products[0].displayImg} 
-                    />
-                    <div className="w-full flex flex-col justify-center items-center mt-4 md:flex-row">
-                        <div className="w-1/3 font-bold text-xl text-zinc-700">Ejy Bed</div>
-                        <div className="w-1/3 font-semibold text-lg text-zinc-700">3 pcs</div>
-                        <div className="w-1/3 font-semibold text-lg text-zinc-700">$6000</div>
-                    </div>
-                </div>
-            </div>
+            {/* ORDER COMPONENT */}
+
+
+
+            {!isLoading && orders.map((order, i) => (
+                <Order data={order} key={i}/>
+            ))}
 
 
 
