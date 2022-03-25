@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const Product = ({displayImg, previewImg, id}) => {
+const Product = ({title, price, sold, displayImg, previewImg, id}) => {
     let navigate = useNavigate()
     const [imageSrc, setImageSrc] = useState(displayImg)
 
@@ -22,9 +22,9 @@ const Product = ({displayImg, previewImg, id}) => {
 
             </div>
             <div className="text-left mt-4">
-                <div className="text-sm font-semibold text-zinc-600">Dresden Sectional Sofa</div>
-                <div className="text-sm font-bold text-orange-600">$4199</div>
-                <div className="text-sm ">23 Sold</div>
+                <div className="text-sm font-semibold text-zinc-600">{title}</div>
+                <div className="text-sm font-bold text-orange-600">${price}</div>
+                <div className="text-sm ">{sold} Sold</div>
             </div>
         </div>
     )
