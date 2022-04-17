@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import Order from "../components/Order"
 import OrderProduct from "../components/OrderProduct"
 import { useUser } from "../hooks/useUser"
-import { getOrders } from "../redux/apiCalls"
+import { getOrders } from "../apiCalls/order.apiCall"
 
 const Orders = props => {
     const [user, token, role] = useUser()
@@ -27,10 +27,6 @@ const Orders = props => {
                 <option>Completed</option>
                 <option>Pending</option>
             </select>
-
-            {/* ORDER COMPONENT */}
-
-
 
             {!isLoading && orders.map((order, i) => (
                 <Order data={order} key={i}/>

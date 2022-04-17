@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import model from '../assets/model-3.png'
 import useForm from "../hooks/useForm"
-import { login } from "../redux/apiCalls"
+import { login } from "../apiCalls/user.apiCall"
 
 
 const Login = props => {

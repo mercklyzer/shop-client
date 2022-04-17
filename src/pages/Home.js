@@ -16,7 +16,6 @@ const Home = props => {
                 <LatestArrivals />
                 <Categories />
                 <ShopWithUs />
-                <Products data={data} />
             </div>
         </>
     )
