@@ -4,9 +4,7 @@ import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
 import Quantity from "../components/Quantity"
 import { addProduct } from "../redux/cartRedux"
-
-import product1 from '../assets/product_1.jpg'
-import product2 from '../assets/product_2.jpg'
+import {RotatingLines} from 'react-loader-spinner'
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +14,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper";
+import { getProduct } from "../apiCalls/product.apiCall"
 
 const Product = props => {
     const location = useLocation()
@@ -23,7 +22,8 @@ const Product = props => {
 
     const id = location.pathname.split("/")[3]
     const [quantity, setQuantity] = useState(1)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
     const [product, setProduct] = useState()
     const [slideImages, setSlideImages] = useState([])
 
@@ -48,6 +48,26 @@ const Product = props => {
         getProduct()
     }, [])
 
+    // useEffect(() => {
+    //     const fetchProduct = async () => {
+    //         setIsLoading(true)
+
+    //         const [data, err] = await getProduct(null, id)
+    //         if(data){
+    //             setProduct(data)
+    //             console.log(data);
+    //             const images = [data.displayImg, data.previewImg, ...data.otherImgs]
+    //             setSlideImages(images)
+    //         }
+    //         if(err){
+    //             setIsError(true)
+    //         }
+
+    //         setIsLoading(false)            
+    //     }
+    //     fetchProduct()
+    // }, [])
+
     const setQuantityHandler = (operation) => {
         if(operation === '-' && quantity > 1){
             setQuantity(qty => qty - 1)
@@ -66,16 +86,18 @@ const Product = props => {
     }
 
     return (
-        !isLoading && <div className="md:section md:grid grid-cols-12 md:gap-6 lg:gap-12 w-full">
+        <>
+        {isLoading && <div className="flex justify-center py-60"><RotatingLines width="40"/></div>}
+        {!isLoading && product && <div className="md:section md:grid grid-cols-12 md:gap-6 lg:gap-12 w-full">
             <div className="md:col-span-7">
             <Swiper
                 pagination={{
-                type: "fraction",
+                    type: "fraction",
                 }}
                 navigation={true}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
-            >
+                >
                 {
                     slideImages.map((img, i) => <SwiperSlide key={i}><img className="h-auto w-full object-cover" src={img} /></SwiperSlide>)
                 }
@@ -91,7 +113,7 @@ const Product = props => {
                     <img 
                         className="w-auto h-8 mr-4"
                         src={'https://cdn.roveconcepts.com/sites/default/files/shield-rove.png'} 
-                    />
+                        />
                     <div>
                         <div className="text-red-500 underline cursor-pointer font-medium">Accident Protection</div>
                         <div className="text-zinc-500 font-semibold text-sm">Accident Protection Plans protect against stains, rips & more</div>
@@ -107,7 +129,7 @@ const Product = props => {
                 <button 
                     onClick={handleClick}
                     className="mt-12 md:mt-16 border border-zinc-900 w-full py-2 text-center hover:bg-zinc-900 hover:text-white duration-100"
-                >
+                    >
                     ADD TO CART
                 </button>
 
@@ -115,7 +137,8 @@ const Product = props => {
                     {product.desc}
                 </div>
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 
