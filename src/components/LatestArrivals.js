@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { getNewProducts } from "../apiCalls/product.apiCall";
 import { useUser } from "../hooks/useUser";
 import ReactPlaceholder from 'react-placeholder';
@@ -6,12 +6,20 @@ import "react-placeholder/lib/reactPlaceholder.css";
 import LatestArrivalPlaceHolder from "./LatestArrivalPlaceHolder";
 import { useNavigate } from "react-router-dom";
 
-const LatestArrivals = props => {
+const LatestArrivals = ({shopNow, setShopNow}) => {
+    const arrivalsRef = useRef(null)
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const [user, token, role] = useUser()
+
+    useEffect(() => {
+        if(shopNow){
+            arrivalsRef.current.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})
+            setShopNow(false)
+        }
+    }, [shopNow, setShopNow])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +40,7 @@ const LatestArrivals = props => {
 
 
     return (
-        <div className="py-16">
+        <div className="py-16" ref={arrivalsRef}>
             <div className="section-header">Latest Arrivals</div>
             <ReactPlaceholder type='rect' rows={3} ready={!isLoading} customPlaceholder={<LatestArrivalPlaceHolder />}>
 

@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Products from "../components/Products"
-import { productsData } from "../data/productsData"
 import sofasHeader from '../assets/sofas.jpeg'
-import axios from "axios";
+import tablesHeader from '../assets/tables.jpeg'
+import pillowsHeader from '../assets/pillows.jpeg'
+import chairsHeader from '../assets/chairs.jpeg'
+import bedsHeader from '../assets/beds.jpeg'
+import { getProducts } from "../apiCalls/product.apiCall"
+import { RotatingLines } from "react-loader-spinner"
 
-const data = productsData
+const getHeaderImg = (category) => {
+    const headerImgs = {
+        sofas: sofasHeader,
+        tables: tablesHeader,
+        pillows: pillowsHeader,
+        chairs: chairsHeader,
+        beds: bedsHeader,
+        
+    }
+    return headerImgs[category]
+}
 
 const ProductList = props => {
     const navigate = useNavigate()
@@ -14,31 +28,27 @@ const ProductList = props => {
 
     const capitalize = (s) => s[0].toUpperCase() + s.slice(1)
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
     const [products, setProducts] = useState()
+    const [headerImg, setHeaderImg] = useState(() => getHeaderImg(category))
     // const [filteredProducts, setFilteredProducts] = useState()
 
     useEffect(() => {
-        const getProducts = async () => {
+        const fetchProducts = async () => {
             setIsLoading(true)
-
-            // move this to apiCalls.js
-            try{
-                const res = await axios.get(
-                    category? 
-                        `http://localhost:5000/products?category=${category}`
-                        : "http://localhost:5000/products"
-                )
-                console.log(res);
-                setProducts(res.data)
+            const [data, err] = await getProducts(null, category)
+            if(data){
+                setProducts(data)
             }
-            catch(err){
-                console.log(err);
+            if(err){
+                setIsError(true)
             }
             setIsLoading(false)            
         }
 
-        getProducts()
+        fetchProducts()
+        setHeaderImg(getHeaderImg(category))
     }, [category])
 
     const handleChangeCategory = (category) => {
@@ -47,7 +57,7 @@ const ProductList = props => {
 
     return (
         <>
-            <div className="h-[calc(80vh-6rem)] w-full bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${sofasHeader})`}}>
+            <div className="h-[calc(80vh-6rem)] w-full bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${headerImg})`}}>
                 <div className="h-full w-full opacity-30 bg-black"></div>    
             </div>
 
@@ -76,7 +86,9 @@ const ProductList = props => {
             </div>
 
             <div className="section py-8">
-                <Products data={products} isLoading={isLoading}/>
+                {isLoading && <div className="py-52 flex justify-center w-full"><RotatingLines width="40"/></div>}
+                {products && products.length !== 0 && <Products data={products} isLoading={isLoading}/>}
+                {products && products.length == 0 && <div>No products yet. We are working on it.</div>}
             </div>
         </>
     )
