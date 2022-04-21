@@ -155,6 +155,7 @@ const Product = props => {
                     Toast
                 </button>
                 <ToastContainer
+                theme="dark"
                 rtl={false} />
                 </>
                 }
