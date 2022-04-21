@@ -48,6 +48,7 @@ const Product = props => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
+                    toastId: "a"
                 }))
             
                 
@@ -91,7 +92,8 @@ const Product = props => {
             dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
         }
         else{
-            toastRef.current.click()
+            
+            onOutOfStock()
             console.log("Out of stock");
         }
 
@@ -152,7 +154,8 @@ const Product = props => {
                     className="w-0 overflow-hidden">
                     Toast
                 </button>
-                <ToastContainer />
+                <ToastContainer
+                rtl={false} />
                 </>
                 }
 
