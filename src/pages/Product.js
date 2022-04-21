@@ -40,7 +40,7 @@ const Product = props => {
                 console.log(data);
                 const images = [data.displayImg, data.previewImg, ...data.otherImgs]
                 setSlideImages(images)
-                setOnOutOfStock(() => () => toastRef.current = toast.error(`Only ${product.stock} pc${product.stock > 1? 's': ''} left.`, {
+                setOnOutOfStock(() => () => toastRef.current = toast.error(`Only ${data.stock} pc${data.stock > 1? 's': ''} left.`, {
                     position: "bottom-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -78,6 +78,16 @@ const Product = props => {
         console.log(quantity);
         console.log(product.stock);
         if(quantity <= product.stock){
+            setProduct(data => ({...data, stock: data.stock - quantity}))
+            setOnOutOfStock(() => () => toastRef.current = toast.error(`Only ${product.stock - quantity} pc${product.stock - quantity > 1? 's': ''} left.`, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            }))
             dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
         }
         else{
