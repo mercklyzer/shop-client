@@ -1,10 +1,11 @@
-import axios from "axios"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
 import Quantity from "../components/Quantity"
 import { addProduct } from "../redux/cartRedux"
 import {RotatingLines} from 'react-loader-spinner'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,47 +27,39 @@ const Product = props => {
     const [isError, setIsError] = useState(false)
     const [product, setProduct] = useState()
     const [slideImages, setSlideImages] = useState([])
+    let toastRef = useRef(null)
+    const [onOutOfStock, setOnOutOfStock] = useState(null)
 
     useEffect(() => {
-        const getProduct = async () => {
+        const fetchProduct = async () => {
             setIsLoading(true)
 
-            // move this to apiCalls.js
-            try{
-                const res = await axios.get(`http://localhost:5000/products/find/${id}`)
-                const fetchedProduct = res.data
-                setProduct(fetchedProduct)
-                console.log(fetchedProduct);
-                const images = [fetchedProduct.displayImg, fetchedProduct.previewImg, ...fetchedProduct.otherImgs]
+            const [data, err] = await getProduct(null, id)
+            if(data){
+                setProduct(data)
+                console.log(data);
+                const images = [data.displayImg, data.previewImg, ...data.otherImgs]
                 setSlideImages(images)
+                setOnOutOfStock(() => () => toastRef.current = toast.error(`Only ${product.stock} pc${product.stock > 1? 's': ''} left.`, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }))
+            
+                
             }
-            catch(err){
-                console.log(err);
+            if(err){
+                setIsError(true)
             }
+
             setIsLoading(false)            
         }
-        getProduct()
+        fetchProduct()
     }, [])
-
-    // useEffect(() => {
-    //     const fetchProduct = async () => {
-    //         setIsLoading(true)
-
-    //         const [data, err] = await getProduct(null, id)
-    //         if(data){
-    //             setProduct(data)
-    //             console.log(data);
-    //             const images = [data.displayImg, data.previewImg, ...data.otherImgs]
-    //             setSlideImages(images)
-    //         }
-    //         if(err){
-    //             setIsError(true)
-    //         }
-
-    //         setIsLoading(false)            
-    //     }
-    //     fetchProduct()
-    // }, [])
 
     const setQuantityHandler = (operation) => {
         if(operation === '-' && quantity > 1){
@@ -82,7 +75,17 @@ const Product = props => {
     }
 
     const handleClick = () => {
-        dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
+        console.log(quantity);
+        console.log(product.stock);
+        if(quantity <= product.stock){
+            dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
+        }
+        else{
+            toastRef.current.click()
+            console.log("Out of stock");
+        }
+
+        
     }
 
     return (
@@ -132,6 +135,16 @@ const Product = props => {
                     >
                     ADD TO CART
                 </button>
+                {onOutOfStock && <>
+                <button 
+                    ref={toastRef}
+                    onClick={onOutOfStock}
+                    className="w-0 overflow-hidden">
+                    Toast
+                </button>
+                <ToastContainer />
+                </>
+                }
 
                 <div className="my-16 text-left text-zinc-500 font-regular">
                     {product.desc}
