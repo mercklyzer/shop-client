@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {useSelector} from 'react-redux'
 import StripeCheckout from "react-stripe-checkout";
 
-const KEY = "pk_test_51H6jd9JIK2H5ZSdWPYvOnwDZOAWhCMSlbKPBgHLbaY1u3ngE3xSGYNqdyuJQmrGLN0K9jJoVxZcljr7GvfbtkGCT00InJsbfUM"
+const KEY = process.env.FIREBASE_KEY
 
 const Pay = props => {
     const [stripeToken, setStripeToken] = useState(null)
@@ -18,7 +18,7 @@ const Pay = props => {
         const makeRequest = async () => {
             try{
                 const res = await axios.post(
-                    "http://localhost:5000/orders",
+                    `${process.env.BASE_URL}/orders`,
                     {
                         tokenId: stripeToken.id,
                         products: products.map(product => ({productId: product.id, quantity: product.quantity})),

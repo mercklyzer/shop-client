@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = "https://lyz-ideas-api.herokuapp.com"
+const baseUrl = process.env.BASE_URL
 
 export const editCart = async (token, userId, updatedCart) => {
 
