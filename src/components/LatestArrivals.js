@@ -46,7 +46,7 @@ const LatestArrivals = ({shopNow, setShopNow}) => {
 
                 <div className="grid sm:grid-cols-3 xl:grid-cols-6 gap-12 mb-24">
 
-                    {products && products.map(({_id, displayImg, title}, i) => <div className="cursor-pointer" onClick={() => navigate(`/shop-client/product/${_id}`)} key={i}>
+                    {products && products.map(({_id, displayImg, title}, i) => <div className="cursor-pointer" onClick={() => navigate(`/product/${_id}`)} key={i}>
                         <img className="mb-2 object-cover minh-48 w-auto h-full" src={displayImg} />
                         <div className="text-md text-zinc-700 font-medium">{title}</div>
                     </div>)}

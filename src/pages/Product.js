@@ -21,7 +21,7 @@ const Product = props => {
     const location = useLocation()
     const dispatch = useDispatch()
 
-    const id = location.pathname.split("/")[3]
+    const id = location.pathname.split("/")[2]
     const [quantity, setQuantity] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)

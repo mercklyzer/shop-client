@@ -31,14 +31,14 @@ function App() {
           </div>
           <div className="relative">
             <Routes>
-              <Route path='/shop-client' exact element={ <Home />}/>
-              <Route path='/shop-client/signup' exact element={ <Signup />}/>
-              <Route path='/shop-client/login' exact element={ <Login />}/>
-              <Route path='/shop-client/products/:category' element={ <ProductList />}/>
-              <Route path='/shop-client/product/:id' exact element={ <Product />}/>
-              <Route path='/shop-client/cart' exact element={ <Cart />}/>
-              <Route path='/shop-client/orders' exact element={ <Orders />}/>
-              <Route path='/shop-client/pay' exact element={ <Pay />}/>
+              <Route path='/' exact element={ <Home />}/>
+              <Route path='/signup' exact element={ <Signup />}/>
+              <Route path='/login' exact element={ <Login />}/>
+              <Route path='/products/:category' element={ <ProductList />}/>
+              <Route path='/product/:id' exact element={ <Product />}/>
+              <Route path='/cart' exact element={ <Cart />}/>
+              <Route path='/orders' exact element={ <Orders />}/>
+              <Route path='/pay' exact element={ <Pay />}/>
             </Routes>
               <div className={`absolute bg-black opacity-50 top-0 z-10 ${showOverlay? 'h-full w-full': 'h-0 w-0'}`}></div>
             <Footer />

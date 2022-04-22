@@ -12,7 +12,7 @@ export const login = async (dispatch, navigate, user) => {
             user
         )
         dispatch(loginSuccess(res.data))
-        navigate('/shop-client/')
+        navigate('/')
     }
     catch(err){
         dispatch(loginFailure({error: err.response?.data?.error}))
@@ -28,7 +28,7 @@ export const signup = async (dispatch, navigate, user) => {
             user
         )
         dispatch(signupSuccess(res.data))
-        navigate('/shop-client/')
+        navigate('/')
     }
     catch(err){
         console.log(err.response);

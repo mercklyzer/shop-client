@@ -24,7 +24,7 @@ const getHeaderImg = (category) => {
 const ProductList = props => {
     const navigate = useNavigate()
     const location = useLocation()
-    const category = location.pathname.split("/")[3]
+    const category = location.pathname.split("/")[2]
 
     const capitalize = (s) => s[0].toUpperCase() + s.slice(1)
 
@@ -52,7 +52,7 @@ const ProductList = props => {
     }, [category])
 
     const handleChangeCategory = (category) => {
-        navigate(`/shop-client/products/${category}`)
+        navigate(`/products/${category}`)
     }
 
     return (
@@ -88,7 +88,7 @@ const ProductList = props => {
             <div className="section py-8">
                 {isLoading && <div className="py-52 flex justify-center w-full"><RotatingLines width="40"/></div>}
                 {products && products.length !== 0 && <Products data={products} isLoading={isLoading}/>}
-                {products && products.length == 0 && <div>No products yet. We are working on it.</div>}
+                {products && products.length === 0 && <div>No products yet. We are working on it.</div>}
             </div>
         </>
     )

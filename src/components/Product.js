@@ -17,7 +17,7 @@ const Product = ({title, price, sold, displayImg, previewImg, id}) => {
                 effect={"blur"}
                 onMouseEnter={() => setImageSrc(previewImg)} 
                 onMouseLeave={() => setImageSrc(displayImg)}
-                onClick={() => navigate(`/shop-client/product/${id}`)} 
+                onClick={() => navigate(`/product/${id}`)} 
             />
 
             </div>

@@ -10,7 +10,7 @@ const OrderProduct = ({id, title, quantity, total, displayImg}) => {
             <img
                 className="w-full h-auto max-w-[290px] object-contain px-4 m-auto sm:m-0 cursor-pointer" 
                 src={displayImg}
-                onClick={() => navigate(`/shop-client/product/${id}`)}
+                onClick={() => navigate(`/product/${id}`)}
             />
             <div className="w-full flex flex-col justify-center items-center mt-4 md:flex-row">
                 <div className="w-1/3 font-bold text-xl text-zinc-700">{title}</div>

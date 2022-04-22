@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import Order from "../components/Order"
-import OrderProduct from "../components/OrderProduct"
 import { useUser } from "../hooks/useUser"
 import { getOrders } from "../apiCalls/order.apiCall"
 

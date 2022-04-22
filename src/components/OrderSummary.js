@@ -12,7 +12,7 @@ const OrderSummary = props => {
 
     const onSuccess = () => {
         dispatch(resetCart())
-        navigate('/shop-client/orders')
+        navigate('/orders')
     }
 
     const [key, onToken] = useStripe(onSuccess)
