@@ -32,13 +32,13 @@ const ProductList = props => {
     const [isError, setIsError] = useState(false)
     const [products, setProducts] = useState()
     const [headerImg, setHeaderImg] = useState(() => getHeaderImg(category))
-    // const [filteredProducts, setFilteredProducts] = useState()
 
     useEffect(() => {
         const fetchProducts = async () => {
             setIsLoading(true)
             const [data, err] = await getProducts(null, category)
             if(data){
+                console.log(data);
                 setProducts(data)
             }
             if(err){
