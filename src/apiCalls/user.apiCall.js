@@ -1,7 +1,7 @@
 import axios from "axios"
 import {loginStart, loginSuccess, loginFailure, signupStart, signupSuccess, signupFailure} from "../redux/userRedux"
 
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://lyz-ideas-api.herokuapp.com"
 
 export const login = async (dispatch, navigate, user) => {
     dispatch(loginStart())

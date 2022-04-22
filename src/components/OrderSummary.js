@@ -48,6 +48,7 @@ const OrderSummary = props => {
                 disabled={total === 0}
             >
                 <div className={`border-2 py-2 px-4 border-gray-800 lg:mb-52 bg-black text-white cursor-pointer ${total === 0? 'opacity-60 cursor-not-allowed' : ''}`}>CHECKOUT NOW</div>
+                <div className="font-semibold text-sm text-orange-500">For testers, use the card <br /> "4242 4242 4242 4242".</div>
             </StripeCheckout>
         </div>
     )

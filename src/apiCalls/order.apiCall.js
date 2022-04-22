@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://lyz-ideas-api.herokuapp.com"
 
 export const getOrders = async (userId, token, setIsLoading) => {
     console.log(userId);
