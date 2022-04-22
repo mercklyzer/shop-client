@@ -41,8 +41,8 @@ export const getProducts = async (token, category) => {
     try{
         const res = await axios.get(
             category? 
-                `http://localhost:5000/products?category=${category}`
-                : "http://localhost:5000/products",
+                `${baseUrl}/products?category=${category}`
+                : `${baseUrl}/products`,
             {
                 headers: {
                     Authorization: token

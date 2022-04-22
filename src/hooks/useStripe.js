@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 // get this key from API
 const KEY = "pk_test_51H6jd9JIK2H5ZSdWPYvOnwDZOAWhCMSlbKPBgHLbaY1u3ngE3xSGYNqdyuJQmrGLN0K9jJoVxZcljr7GvfbtkGCT00InJsbfUM"
+const baseUrl = "https://lyz-ideas-api.herokuapp.com"
 
 const useStripe = (onSuccess) => {
     const navigate = useNavigate()
@@ -23,7 +24,7 @@ const useStripe = (onSuccess) => {
             try{
                 console.log(userToken);
                 const res = await axios.post(
-                    "http://localhost:5000/orders",
+                    `${baseUrl}/orders`,
                     {
                         tokenId: stripeToken.id,
                         products: products.map(product => ({productId: product._id, quantity: product.quantity})),
