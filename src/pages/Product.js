@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
-import { useLocation } from "react-router-dom"
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import Quantity from "../components/Quantity"
 import { addProduct } from "../redux/cartRedux"
 import {RotatingLines} from 'react-loader-spinner'
@@ -16,11 +16,14 @@ import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper";
 import { getProduct } from "../apiCalls/product.apiCall"
+import { useUser } from "../hooks/useUser"
 
 const Product = props => {
     const location = useLocation()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
+    const [token, user, role] = useUser()
     const id = location.pathname.split("/")[2]
     const [quantity, setQuantity] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
@@ -75,25 +78,29 @@ const Product = props => {
     }
 
     const handleClick = () => {
-        console.log(quantity);
-        console.log(product.stock);
-        if(quantity <= product.stock){
-            setProduct(data => ({...data, stock: data.stock - quantity}))
-            setOnOutOfStock(() => () => toastRef.current = toast.error(`Only ${product.stock - quantity} pc${product.stock - quantity > 1? 's': ''} left.`, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            }))
-            dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
+        if(!user){
+            navigate('/signup')
         }
         else{
-            
-            onOutOfStock()
-            console.log("Out of stock");
+       
+            if(quantity <= product.stock){
+                setProduct(data => ({...data, stock: data.stock - quantity}))
+                setOnOutOfStock(() => () => toastRef.current = toast.error(`Only ${product.stock - quantity} pc${product.stock - quantity > 1? 's': ''} left.`, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }))
+                dispatch(addProduct({product: product, quantity, total:product.price*quantity}))
+            }
+            else{
+                
+                onOutOfStock()
+                console.log("Out of stock");
+            }
         }
 
         
