@@ -51,7 +51,6 @@ const Product = props => {
                     toastId: "a"
                 }))
             
-                
             }
             if(err){
                 setIsError(true)
