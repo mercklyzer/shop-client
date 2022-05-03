@@ -33,10 +33,10 @@ const Signup = props => {
                 <h2 className="text-left font-light text-2xl mb-4">CREATE AN ACCOUNT</h2>
                 <form className="w-full">
                     <div className="grid grid-rows-6 grid-cols-1 sm:grid-rows-3 sm:grid-cols-2 gap-4">
-                        <input className="border border-slate-700 px-4 py-2" value={signupForm.firstName} name="firstName" onChange={(e) => setSignupForm(e)} placeholder="first name" />
-                        <input className="border border-slate-700 px-4 py-2" value={signupForm.lastName} name="lastName" onChange={(e) => setSignupForm(e)} placeholder="last name" />
-                        <input className="border border-slate-700 px-4 py-2" value={signupForm.username} name="username" onChange={(e) => setSignupForm(e)} placeholder="username" />
-                        <input className="border border-slate-700 px-4 py-2" value={signupForm.email} name="email" onChange={(e) => setSignupForm(e)} placeholder="email" />
+                        <input className="border border-slate-700 px-4 py-2" type="text" value={signupForm.firstName} name="firstName" onChange={(e) => setSignupForm(e)} placeholder="first name" />
+                        <input className="border border-slate-700 px-4 py-2" type="text" value={signupForm.lastName} name="lastName" onChange={(e) => setSignupForm(e)} placeholder="last name" />
+                        <input className="border border-slate-700 px-4 py-2" type="text" value={signupForm.username} name="username" onChange={(e) => setSignupForm(e)} placeholder="username" />
+                        <input className="border border-slate-700 px-4 py-2" type="email" value={signupForm.email} name="email" onChange={(e) => setSignupForm(e)} placeholder="email" />
                         <input className="border border-slate-700 px-4 py-2" value={signupForm.password} name="password" onChange={(e) => setSignupForm(e)} type="password" placeholder="password" />
                         <input className="border border-slate-700 px-4 py-2" value={signupForm.confirmPassword} name="confirmPassword" onChange={(e) => setSignupForm(e)} type="password" placeholder="confirm password" />
                     </div>
