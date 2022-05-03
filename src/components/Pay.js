@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {useSelector} from 'react-redux'
 import StripeCheckout from "react-stripe-checkout";
 
-const KEY = process.env.STRIPE_KEY
+const KEY = process.env.REACT_APP_STRIPE_KEY
 
 const Pay = props => {
     const [stripeToken, setStripeToken] = useState(null)

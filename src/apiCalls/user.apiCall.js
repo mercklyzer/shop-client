@@ -1,10 +1,11 @@
 import axios from "axios"
 import {loginStart, loginSuccess, loginFailure, signupStart, signupSuccess, signupFailure} from "../redux/userRedux"
 
-const baseUrl = process.env.BASE_URL
+const baseUrl = process.env.REACT_APP_BASE_URL
 
 export const login = async (dispatch, navigate, user) => {
     dispatch(loginStart())
+    console.log(baseUrl);
 
     try{
         const res = await axios.post(
