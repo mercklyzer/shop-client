@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = process.env.BASE_URL
+const baseUrl = process.env.REACT_APP_BASE_URL
 
 export const getOrders = async (userId, token, setIsLoading) => {
     console.log(userId);
